@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import {  authGuard } from './Guards/auth.guard';
-
+import { authGuard } from './Guards/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   {
     path: 'home',
     canActivate: [authGuard],
-    component: HomeComponent,
+    loadChildren: () =>
+      import('./components/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: 'login',
@@ -21,15 +21,14 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-  // {
-  //   path: '**',
-  //   loadChildren: () =>
-  //     import('./components/home/home.component').then((m) => m.HomeComponent),
-  // },
+  {
+    path: '**',
+    redirectTo: 'home',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
