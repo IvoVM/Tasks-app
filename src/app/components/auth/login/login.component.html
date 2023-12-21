@@ -1,0 +1,34 @@
+<div class="d-flex align-items-center justify-center flex-column">
+  <h1>Inicio de sesión</h1>
+  <form
+    class="d-flex align-items-center justify-center flex-column mt-3 form"
+    [formGroup]="form"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        autocomplete="true"
+        matInput
+        class="form-input"
+        type="email"
+        formControlName="email"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input
+        autocomplete="off"
+        matInput
+        class="form-input"
+        type="password"
+        formControlName="password"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+    <button class="btn mb-4 input login-btn" (click)="login()">Login</button>
+  </form>
+  <p class="mt-2">¿Todavía no estas registrado? <a routerLink="/register">Ir al registro de usuario</a></p>
+
+</div>
