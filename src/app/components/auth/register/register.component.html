@@ -7,7 +7,7 @@
     <!-- Nombre -->
     <mat-form-field appearance="fill">
       <mat-label>Nombre</mat-label>
-      <input matInput class="form-input" type="text" formControlName="nombre" />
+      <input matInput class="form-input" type="text" formControlName="first_name" />
       <mat-error *ngIf="form.get('nombre')?.hasError('required')"
         >El nombre es obligatorio.</mat-error
       >
@@ -23,7 +23,7 @@
         matInput
         class="form-input"
         type="text"
-        formControlName="apellido"
+        formControlName="last_name"
       />
       <mat-error *ngIf="form.get('apellido')?.hasError('required')"
         >El apellido es obligatorio.</mat-error
