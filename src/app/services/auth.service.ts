@@ -13,13 +13,13 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
     const params = new HttpParams().set('email', email);
-    return this.http.get(environment.apiUrl + '/api/Users/ValidateEmail', {
+    return this.http.get(environment.apiUrl + '/Users/ValidateEmail', {
       headers,
       params,
     });
   }
 
   register(body: User): Observable<any> {
-    return this.http.post(environment.apiUrl + '/api/Users/Register', body);
+    return this.http.post(environment.apiUrl + '/Users/Register', body);
   }
 }
