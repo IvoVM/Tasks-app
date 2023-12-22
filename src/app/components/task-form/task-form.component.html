@@ -1,0 +1,32 @@
+<form
+  class="d-flex justify-content-center align-items-center flex-column p-5 pb-0"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Título</mat-label>
+    <input autocomplete="true" matInput class="form-input" type="text" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [value]="inputValue" (input)="onInputChange($event)" />
+    <app-priority-input
+      [counterValue]="inputValue"
+      (counterChange)="onCounterChange($event)"
+      matSuffix
+    ></app-priority-input>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <textarea
+      autocomplete="true"
+      matInput
+      class="form-input"
+      rows="4"
+    ></textarea>
+  </mat-form-field>
+
+  <div class="mt-1 d-flex justify-content-between">
+    <button type="button" class="btn btn-danger m-2">Cancelar</button>
+    <button type="button" class="btn btn-primary m-2">Aceptar</button>
+  </div>
+</form>
