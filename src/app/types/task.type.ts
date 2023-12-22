@@ -22,3 +22,8 @@ export interface TaskPage {
   total_pages: number;
   items: TaskResponse[];
 }
+
+export interface Categories {
+  id: number;
+  name: string;
+}
