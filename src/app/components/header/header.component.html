@@ -1,0 +1,30 @@
+<header class="d-flex justify-content-between align-items-center header-purple">
+  <span
+    class="logo-text d-flex justify-content-between align-items-center"
+    routerLink="home"
+  >
+    <img
+      _ngcontent-ng-c3202968170=""
+      matbuttonicon=""
+      src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg"
+      alt="angular"
+      aria-hidden="true"
+      class="logo"
+      width="40px"
+      height="40px"
+    />
+    Task App</span
+  >
+  <div>
+    <button mat-button [matMenuTriggerFor]="beforeMenu" class="text-white">
+      Ivotest@gmail.com
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span class="text-center"> Cerrar sesión </span>
+      </button>
+    </mat-menu>
+  </div>
+</header>

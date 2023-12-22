@@ -14,8 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from './components/task/task.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     RegisterComponent,
     HomeComponent,
     TaskComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
