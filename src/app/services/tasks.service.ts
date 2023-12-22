@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.prod';
-import { Task, TaskPage, TaskResponse } from '../types/task.type';
+import { Categories, Task, TaskPage, TaskResponse } from '../types/task.type';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +30,9 @@ export class TasksService {
 
   deleteTask(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  getCategories(): Observable<Categories[]> {
+    return this.http.get<Categories[]>(`${environment.apiUrl}` + '/Categories');
   }
 }
