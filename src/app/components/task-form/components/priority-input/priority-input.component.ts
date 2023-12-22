@@ -6,22 +6,36 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./priority-input.component.scss'],
 })
 export class PriorityInputComponent {
-  @Input() counterValue = 0;
-  @Output() counterChange = new EventEmitter<number>();
+  private _counterValue = 1;
 
-  increment() {
-    this.counterValue++;
+  @Input()
+  get counterValue(): number {
+    return this._counterValue;
+  }
+
+  set counterValue(value: number) {
+    // Limitar el valor entre 1 y 10
+    this._counterValue = Math.min(10, Math.max(1, value));
     this.emitCounterValue();
   }
 
+  @Output() counterChange = new EventEmitter<number>();
+
+  increment() {
+    if (this._counterValue < 10) {
+      this._counterValue++;
+      this.emitCounterValue();
+    }
+  }
+
   decrement() {
-    if (this.counterValue > 0) {
-      this.counterValue--;
+    if (this._counterValue > 1) {
+      this._counterValue--;
       this.emitCounterValue();
     }
   }
 
   private emitCounterValue() {
-    this.counterChange.emit(this.counterValue);
+    this.counterChange.emit(this._counterValue);
   }
 }
