@@ -1,1 +1,11 @@
-<p>category-input works!</p>
+<mat-form-field appearance="fill">
+  <mat-select
+    [(value)]="selectedCategoryId"
+    (selectionChange)="onSelectChange()"
+    placeholder="Categoría"
+  >
+    <mat-option *ngFor="let category of categories" [value]="category.id">
+      {{ category.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
