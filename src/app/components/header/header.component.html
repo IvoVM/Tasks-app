@@ -16,15 +16,12 @@
     Task App</span
   >
   <div>
-    <button mat-button [matMenuTriggerFor]="beforeMenu" class="text-white">
-      Ivotest@gmail.com
-      <mat-icon>keyboard_arrow_down</mat-icon>
+    <button mat-button class="text-white">
+      <div class="d-flex align-items-center">
+        <mat-icon>account_box</mat-icon>
+        <span class="mx-2 mt-1">Ivotest@gmail.com</span>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </div>
     </button>
-    <mat-menu #beforeMenu="matMenu" xPosition="before">
-      <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon>
-        <span class="text-center"> Cerrar sesión </span>
-      </button>
-    </mat-menu>
   </div>
 </header>
