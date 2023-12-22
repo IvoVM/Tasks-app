@@ -35,16 +35,41 @@
       .h3 {
         font-family: sans-serif;
       }
-      .task-text{
+      .task-text {
         max-height: 72px;
         overflow: hidden;
       }
     }
   }
   .footer {
+    overflow: show;
     height: 40px;
     .pointer {
       cursor: pointer;
+    }
+    .arrow {
+      cursor: pointer;
+      padding: 10px;
+      display: inline-block; 
+
+      &:hover {
+        animation: bounce 1s infinite;
+      }
+
+      svg path {
+        fill: #5230ff;
+        transition: transform 0.3s ease-in-out;
+
+        @keyframes bounce {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(5px);
+          }
+        }
+      }
     }
   }
 }
