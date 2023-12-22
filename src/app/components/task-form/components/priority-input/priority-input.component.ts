@@ -14,15 +14,15 @@ export class PriorityInputComponent {
   }
 
   set counterValue(value: number) {
-    // Limitar el valor entre 1 y 10
-    this._counterValue = Math.min(10, Math.max(1, value));
+    // Limitar el valor entre 1 y 5
+    this._counterValue = Math.min(5, Math.max(1, value));
     this.emitCounterValue();
   }
 
   @Output() counterChange = new EventEmitter<number>();
 
   increment() {
-    if (this._counterValue < 10) {
+    if (this._counterValue < 5) {
       this._counterValue++;
       this.emitCounterValue();
     }
