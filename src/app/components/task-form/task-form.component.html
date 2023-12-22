@@ -7,13 +7,20 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [value]="inputValue" (input)="onInputChange($event)" />
+    <input
+      matInput
+      [value]="inputValue"
+      (input)="onInputChange($event)"
+      disabled="true"
+    />
     <app-priority-input
       [counterValue]="inputValue"
       (counterChange)="onCounterChange($event)"
       matSuffix
     ></app-priority-input>
   </mat-form-field>
+
+  <app-category-input [categories]="categories"></app-category-input>
 
   <mat-form-field appearance="fill">
     <mat-label>Descripción</mat-label>
