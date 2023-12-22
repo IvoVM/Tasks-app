@@ -7,10 +7,15 @@ html {
     padding: 0;
     app-root {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
       height: 100%;
-  
+      app-login,
+      app-register {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }
