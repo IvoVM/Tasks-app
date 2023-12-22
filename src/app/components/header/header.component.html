@@ -4,24 +4,23 @@
     routerLink="home"
   >
     <img
-      _ngcontent-ng-c3202968170=""
-      matbuttonicon=""
+      matbuttonicon
       src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg"
-      alt="angular"
-      aria-hidden="true"
+      alt="Logo de Angular"
       class="logo"
       width="40px"
       height="40px"
     />
-    Task App</span
-  >
-  <div>
-    <button mat-button class="text-white">
+    Task App
+  </span>
+
+  <ng-container *ngIf="user && user.email">
+    <button mat-button class="text-white" (click)="openDialog()">
       <div class="d-flex align-items-center">
         <mat-icon>account_box</mat-icon>
-        <span class="mx-2 mt-1">Ivotest@gmail.com</span>
+        <span class="mx-2 mt-1">{{ user.email }}</span>
         <mat-icon>keyboard_arrow_down</mat-icon>
       </div>
     </button>
-  </div>
+  </ng-container>
 </header>
