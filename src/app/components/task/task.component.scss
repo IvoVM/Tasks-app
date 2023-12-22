@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,400&display=swap");
 .card {
-  width: 410px;
+  width: 500px;
+  height: 340px;
   border-radius: 8px;
   color: #727272;
   font-family: "Rubik", sans-serif;
@@ -33,6 +34,10 @@
     .task {
       .h3 {
         font-family: sans-serif;
+      }
+      .task-text{
+        max-height: 72px;
+        overflow: hidden;
       }
     }
   }
