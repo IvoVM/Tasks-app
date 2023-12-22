@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,12 +14,18 @@ export class LogoutComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { userEmail: string },
     private userSvc: UserService,
-    private router: Router
+    private router: Router,
+    private dialogRef: MatDialogRef<LogoutComponent>
   ) {
     this.userEmail = data.userEmail;
   }
   logout() {
     this.userSvc.clearUser();
+    this.closeDialog();
     this.router.navigateByUrl('login');
+  }
+  closeDialog(){
+    this.dialogRef.close(); 
+
   }
 }
