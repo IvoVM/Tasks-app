@@ -3,15 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { authGuard } from './Guards/auth.guard';
+import { AuthGuard } from './Guards/auth.guard';
+import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   {
     path: 'home',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('./components/home/home.component').then((m) => m.HomeComponent),
+    // canActivate: [AuthGuard],
+    // loadChildren: () =>
+    //   import('./components/home/home.component').then((m) => m.HomeComponent),
+    component: HomeComponent,
   },
   {
     path: 'login',
@@ -20,6 +22,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path:'task:id',
+    component: TaskDetailComponent,
   },
   {
     path: '**',
