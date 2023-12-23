@@ -12,6 +12,7 @@ import { User } from 'src/app/types/user.type';
 })
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
+  showPassword = false;
 
   constructor(
     private fb: FormBuilder,
