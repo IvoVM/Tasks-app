@@ -14,6 +14,7 @@ export class UserService {
 
   setUser(user: UserResponse) {
     this.userSubject.next(user);
+    console.log(user);
   }
 
   clearUser() {
