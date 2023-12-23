@@ -1,0 +1,35 @@
+mat-form-field {
+  width: 330px;
+  height: 77px;
+  .mat-mdc-text-field-wrapper mat-label {
+    font-weight: 500;
+  }
+  mat-icon {
+    font-size: 24px;
+    color: #5230ff;
+  }
+  input {
+    color: #9747ff;
+  }
+  &::ng-deep {
+    .mat-mdc-text-field-wrapper {
+      background-color: #fff;
+      width: 100%;
+      padding: 0px, 16px, 0px, 16px;
+      border-radius: 8px;
+      border: 2px solid #a1a1a1;
+      gap: 16px;
+      outline: none;
+      transition: 0.5s;
+      &:hover {
+        border-color: #9747ff;
+      }
+    }
+    .mat-mdc-form-field-focus-overlay {
+      opacity: 0;
+    }
+    .mdc-line-ripple {
+      display: none;
+    }
+  }
+}

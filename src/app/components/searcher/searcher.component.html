@@ -1,0 +1,17 @@
+<form
+  class="d-flex align-items-center justify-center flex-column mt-3 form"
+  [formGroup]="form"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Búsqueda</mat-label>
+
+    <input
+      autocomplete="false"
+      matInput
+      class="form-input"
+      type="text"
+      formControlName="filter"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>
