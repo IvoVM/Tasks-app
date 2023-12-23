@@ -36,7 +36,7 @@
         font-family: sans-serif;
       }
       .task-text {
-        max-height: 72px;
+        max-height: 75px;
         overflow: hidden;
       }
     }
@@ -50,7 +50,7 @@
     .arrow {
       cursor: pointer;
       padding: 10px;
-      display: inline-block; 
+      display: inline-block;
 
       &:hover {
         animation: bounce 1s infinite;

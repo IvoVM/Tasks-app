@@ -91,19 +91,25 @@
         </div>
         <!-- column 1 -->
         <div>
-          <p class="mb-3 text-size-12">14/12/24</p>
-          <p class="mb-3 text-size-12">14/12/24</p>
+          <p class="mb-3 text-size-12">
+            {{ data.last_update_date | dateFormat }}
+          </p>
+          <p class="mb-3 text-size-12">{{ data.creation_date | dateFormat }}</p>
           <p class="mb-3 text-size-12">Prioridad:</p>
           <p class="mb-0 text-size-12">Categoria:</p>
         </div>
         <!-- column 2 -->
         <div>
-          <p class="mb-3 text-size-12">8:30 <span>(Editado)</span></p>
-          <p class="mb-3 text-size-12">8:30 <span>(Creado)</span></p>
-          <p class="mb-3 text-size-12 priority-badge">
-            <span>10</span>
+          <p class="mb-3 text-size-12 mx-2">
+            {{ data.last_update_date | timeFormat }} <span>(Editado)</span>
           </p>
-          <p class="mb-0 text-size-12 ml-2">Categoría 1</p>
+          <p class="mb-3 text-size-12 mx-2">
+            {{ data.creation_date | timeFormat }} <span>(Creado)</span>
+          </p>
+          <p class="mb-3 text-size-12 priority-badge">
+            <span>{{ data.priority }}</span>
+          </p>
+          <p class="mb-0 text-size-12 ml-2">{{ data.category }}</p>
         </div>
       </div>
 
@@ -112,11 +118,11 @@
     </div>
 
     <div class="task">
-      <p class="h3 text-black mb-2 mx-1 mt-4">Tarea 1</p>
+      <p class="h3 text-black mb-2 mx-1 mt-4">
+        {{ data.title | truncateText : 20 }}
+      </p>
       <p class="text-grey mx-1 mt-3 task-text">
-        Cuando un usuario realiza una actualización de inventario mediante la
-        interfaz web, las cantidades no se reflejan correctamente en la base de
-        datos. El problema parece estar relacionado...
+        {{ data.description | truncateText : 210 }}
       </p>
     </div>
   </div>
