@@ -21,7 +21,7 @@ export class InterceptorService implements HttpInterceptor {
     const token: string | null = localStorage.getItem('token');
     let request = req;
 
-    if (token && !this.TokenSvc.tokenIsExpired) {
+    if (token) {
       request = req.clone({
         setHeaders: {
           authorization: `Bearer ${token}`,
