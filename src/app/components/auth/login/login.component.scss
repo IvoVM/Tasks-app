@@ -1,5 +1,8 @@
+.title-svg {
+  margin-top: 6rem;
+}
+
 .form {
-  width: 500px;
   mat-form-field {
     width: 312px;
     height: 77px;
@@ -70,4 +73,8 @@
       }
     }
   }
+}
+
+.title {
+  font-family: "Rubik", sans-serif;
 }
