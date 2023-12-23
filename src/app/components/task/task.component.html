@@ -1,7 +1,10 @@
 <div class="card justify-content-between">
   <div class="top">
     <div class="d-flex justify-content-between align-items-start">
-      <div class="d-flex justify-content-between align-items-start">
+      <div
+        class="d-flex justify-content-between align-items-start pointer"
+        [routerLink]="['/task', data.id]"
+      >
         <!-- icons -->
         <div
           class="d-flex flex-column justify-content-between align-items-center"
@@ -122,7 +125,10 @@
     </div>
 
     <div class="task">
-      <p class="h3 text-black mb-2 mx-1 mt-4">
+      <p
+        class="h3 text-black mb-2 mx-1 mt-4 pointer"
+        [routerLink]="['/task', data.id]"
+      >
         {{ data.title | truncateText : 20 }}
       </p>
       <p class="text-grey mx-1 mt-3 task-text">

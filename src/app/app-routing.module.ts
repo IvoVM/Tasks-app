@@ -24,7 +24,7 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path:'task:id',
+    path: 'task/:id',
     component: TaskDetailComponent,
   },
   {
