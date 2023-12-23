@@ -13,6 +13,7 @@ export interface TaskResponse {
   priority: number;
   is_completed: boolean;
   last_update_date: string;
+  creation_date?: string;
 }
 
 export interface TaskPage {
