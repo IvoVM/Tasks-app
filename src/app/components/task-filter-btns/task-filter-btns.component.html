@@ -1,11 +1,18 @@
 <div class="d-flex align-items-center">
-  <button class="filter-btn complete text-white" mat-button>Completas</button>
+  <button
+    class="filter-btn complete text-white"
+    mat-button
+    (click)="onCompleteButtonClick()"
+  >
+    Completas
+  </button>
 
   <button
     class="filter-btn incomplete mx-2"
     mat-button
     [ngClass]="{ 'disabled-text': disabled, text: !disabled }"
     [disabled]="disabled"
+    (click)="onIncompleteButtonClick()"
   >
     Incompletas
   </button>

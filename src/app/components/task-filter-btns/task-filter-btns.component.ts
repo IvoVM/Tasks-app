@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-task-filter-btns',
@@ -6,5 +6,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./task-filter-btns.component.scss'],
 })
 export class TaskFilterBtnsComponent {
-  @Input() disabled = true;
+  @Input() disabled!: boolean;
+  @Output() completeButtonClick = new EventEmitter<void>();
+  @Output() incompleteButtonClick = new EventEmitter<void>();
+
+  onCompleteButtonClick() {
+    this.completeButtonClick.emit();
+  }
+
+  onIncompleteButtonClick() {
+    this.incompleteButtonClick.emit();
+  }
 }
