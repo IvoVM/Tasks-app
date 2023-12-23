@@ -114,7 +114,11 @@
       </div>
 
       <!-- checkbox -->
-      <mat-checkbox [color]="'primary'"></mat-checkbox>
+      <mat-checkbox
+        [color]="'primary'"
+        [checked]="data.is_completed ? data.is_completed : false"
+        (click)="onCheckboxChange($event)"
+      ></mat-checkbox>
     </div>
 
     <div class="task">
