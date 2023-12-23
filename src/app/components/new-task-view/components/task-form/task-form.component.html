@@ -50,10 +50,14 @@
       ></textarea>
     </mat-form-field>
     <div *ngIf="error">
-      <p class="text-danger font-700">
+      <p class="text-danger font-700 text-center">
         {{ this.error }}
       </p>
     </div>
-    <app-workspace-btn [text]="'Crear'" class="w-100"></app-workspace-btn>
+    <app-workspace-btn
+      [text]="'Crear'"
+      class="w-100"
+      (click)="manageFormData()"
+    ></app-workspace-btn>
   </form>
 </div>

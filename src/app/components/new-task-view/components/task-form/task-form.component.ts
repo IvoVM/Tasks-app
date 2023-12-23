@@ -1,5 +1,5 @@
 // task-form.component.ts
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TasksService } from 'src/app/services/tasks.service';
@@ -13,22 +13,20 @@ import { Categories } from 'src/app/types/task.type';
 export class TaskFormComponent {
   form: FormGroup;
   inputValue = 1;
-  categories: Categories[] = [];
   selectedCategoryId!: number;
   error!: string;
+
+  @Input() categories: Categories[] = [];
+  @Output() sendFormData = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
     private taskSvc: TasksService,
     private _snackBar: MatSnackBar
   ) {
-    // if (data && data.categories) {
-    //   this.categories = data.categories;
-    // }
-
     this.form = this.fb.group({
-      title: ['', Validators.required, Validators.maxLength(50)],
-      description: ['', Validators.required, Validators.maxLength(500)],
+      title: ['', [Validators.required, Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.maxLength(500)]],
     });
   }
 
@@ -52,7 +50,7 @@ export class TaskFormComponent {
     });
   }
 
-  createTask() {
+  manageFormData() {
     if (!this.form.valid) {
       this.error =
         'Completa correctamente los campos de titulo (max: 50 car.) y descripción (max: 500 car.)';
@@ -69,16 +67,8 @@ export class TaskFormComponent {
         category_id: this.selectedCategoryId,
         priority: this.inputValue,
       };
-      this.taskSvc.createTask(body).subscribe({
-        next: (res) => {
-          this.openSnackBar('Tarea creada con exito');
-        },
-        error: (err) => {
-          this.openSnackBar(
-            'Hubo un error al crear la tarea, intentelo más tarde'
-          );
-        },
-      });
+      this.sendFormData.emit(body);
     }
   }
 }
+
