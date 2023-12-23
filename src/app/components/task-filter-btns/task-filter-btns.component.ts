@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-task-filter-btns',
   templateUrl: './task-filter-btns.component.html',
-  styleUrls: ['./task-filter-btns.component.scss']
+  styleUrls: ['./task-filter-btns.component.scss'],
 })
 export class TaskFilterBtnsComponent {
-
+  @Input() disabled = true;
 }
