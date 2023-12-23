@@ -33,7 +33,9 @@ import { TimeFormatPipe } from './pipes/time-format.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
-import { TaskFilterBtnsComponent } from './components/task-filter-btns/task-filter-btns.component';
+import { DeleteTaskModalComponent } from './components/delete-task-modal/delete-task-modal.component';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
+import { WorkspaceBtnComponent } from './components/workspace-btn/workspace-btn.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { TaskFilterBtnsComponent } from './components/task-filter-btns/task-filt
     DateFormatPipe,
     TruncateTextPipe,
     TaskDetailComponent,
-    TaskFilterBtnsComponent,
+    DeleteTaskModalComponent,
+    EditFormComponent,
+    WorkspaceBtnComponent,
   ],
   imports: [
     BrowserModule,
