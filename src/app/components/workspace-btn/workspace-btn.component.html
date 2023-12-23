@@ -2,7 +2,11 @@
   mat-button
   [disabled]="disabled"
   class="filter-btn"
-  [ngClass]="{ white: color === 'white', blue: color === 'blue' }"
+  [ngClass]="{
+    white: color === 'white',
+    blue: color === 'blue',
+    grey: color === 'grey'
+  }"
 >
   {{ text }}
 </button>

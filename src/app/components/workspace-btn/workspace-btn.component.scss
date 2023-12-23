@@ -24,10 +24,12 @@
   }
 }
 
-.disabled-text {
+.grey {
+  border-radius: 8px;
+  background: #f7f5ff;
   &::ng-deep {
     .mdc-button__label {
-      color: #5230ff;
+      color: #828282;
     }
   }
 }
