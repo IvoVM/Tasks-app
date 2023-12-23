@@ -1,0 +1,33 @@
+.filter-btn {
+  padding: 24px 16px;
+  text-align: center;
+  gap: 4px;
+  border-radius: 8px;
+  width: 100%;
+  &::ng-deep {
+    .mdc-button__label {
+      color: #fff;
+    }
+  }
+}
+.blue {
+  background-color: #5230ff;
+  border: 1px solid #5230ff;
+}
+.white {
+  background-color: #fff;
+  border: 1px solid #5230ff;
+  &::ng-deep {
+    .mdc-button__label {
+      color: #5230ff;
+    }
+  }
+}
+
+.disabled-text {
+  &::ng-deep {
+    .mdc-button__label {
+      color: #5230ff;
+    }
+  }
+}
