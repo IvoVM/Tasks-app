@@ -7,7 +7,6 @@ import { TaskResponse } from 'src/app/types/task.type';
 @Component({
   selector: 'app-delete-task-modal',
   templateUrl: './delete-task-modal.component.html',
-  styleUrls: ['./delete-task-modal.component.scss'],
 })
 export class DeleteTaskModalComponent {
   constructor(
