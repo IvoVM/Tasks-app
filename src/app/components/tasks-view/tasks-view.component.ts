@@ -26,6 +26,8 @@ export class TasksViewComponent implements OnInit {
         } else {
           this.error = '';
         }
+        this.disableIncompleteBtn = true;
+
       },
       error: (err) => {
         this.error =
@@ -43,6 +45,8 @@ export class TasksViewComponent implements OnInit {
         } else {
           this.error = '';
         }
+        this.disableIncompleteBtn = false;
+
       },
       error: (err) => {
         this.error =

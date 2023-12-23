@@ -23,6 +23,17 @@ import { SearcherComponent } from './components/searcher/searcher.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InterceptorService } from './services/interceptor.service';
+import { TaskFormComponent } from './components/task-form/task-form.component';
+import { CategoryInputComponent } from './components/task-form/components/category-input/category-input.component';
+import { PriorityInputComponent } from './components/task-form/components/priority-input/priority-input.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TasksViewComponent } from './components/tasks-view/tasks-view.component';
+import { TimeFormatPipe } from './pipes/time-format.pipe';
+import { DateFormatPipe } from './pipes/date-format.pipe';
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+import { TaskDetailComponent } from './components/task-detail/task-detail.component';
+import { TaskFilterBtnsComponent } from './components/task-filter-btns/task-filter-btns.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +46,15 @@ import { InterceptorService } from './services/interceptor.service';
     FooterComponent,
     SearcherComponent,
     LogoutComponent,
+    TaskFormComponent,
+    CategoryInputComponent,
+    PriorityInputComponent,
+    TasksViewComponent,
+    TimeFormatPipe,
+    DateFormatPipe,
+    TruncateTextPipe,
+    TaskDetailComponent,
+    TaskFilterBtnsComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +70,8 @@ import { InterceptorService } from './services/interceptor.service';
     MatButtonModule,
     MatMenuModule,
     MatDialogModule,
+    MatSelectModule,
+    MatSnackBarModule,
   ],
   providers: [
     {
