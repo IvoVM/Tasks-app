@@ -80,13 +80,21 @@
           autocomplete="off"
           matInput
           class="form-input"
-          type="password"
+          [type]="showPassword ? 'text' : 'password'"
           formControlName="password"
         />
-        <mat-icon matSuffix>search</mat-icon>
-        <mat-icon matSuffix>lock</mat-icon>
+        <mat-icon matSuffix (click)="this.showPassword = !this.showPassword">{{
+          showPassword ? "remove_red_eye" : "lock"
+        }}</mat-icon>
       </mat-form-field>
-      <app-workspace-btn class="w-100" [text]="'Ingresar'" (click)="login()"></app-workspace-btn>
+
+      <app-workspace-btn
+        class="w-100"
+        [text]="'Ingresar'"
+        (click)="login()"
+        [disabled]="!this.form.valid"
+      ></app-workspace-btn>
+      
       <app-workspace-btn
         class="w-100 mt-2"
         [text]="'Crear Usuario'"

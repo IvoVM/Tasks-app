@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -11,12 +12,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
   public form!: FormGroup;
+  showPassword = false;
 
   constructor(
     private fb: FormBuilder,
     private authSvc: AuthService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar,
+
   ) {}
 
   ngOnInit(): void {
@@ -47,9 +51,16 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('home');
         },
         error: (err) => {
-          console.log('error login', err);
+          this.openSnackBar('Error, el usuario o la contraseña son incorrectos')
         },
       });
     }
   }
+
+  openSnackBar(msg: string) {
+    this._snackBar.open(msg, 'Cerrar', {
+      duration: 4000,
+    });
+  }
+  
 }
