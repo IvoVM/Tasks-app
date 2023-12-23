@@ -8,10 +8,10 @@
     <mat-form-field appearance="fill">
       <mat-label>Nombre</mat-label>
       <input matInput class="form-input" type="text" formControlName="first_name" />
-      <mat-error *ngIf="form.get('nombre')?.hasError('required')"
+      <mat-error *ngIf="form.get('first_name')?.hasError('required')"
         >El nombre es obligatorio.</mat-error
       >
-      <mat-error *ngIf="form.get('nombre')?.hasError('maxlength')"
+      <mat-error *ngIf="form.get('first_name')?.hasError('maxLength')"
         >El nombre no debe superar los 50 caracteres.</mat-error
       >
     </mat-form-field>
@@ -25,10 +25,10 @@
         type="text"
         formControlName="last_name"
       />
-      <mat-error *ngIf="form.get('apellido')?.hasError('required')"
+      <mat-error *ngIf="form.get('last_name')?.hasError('required')"
         >El apellido es obligatorio.</mat-error
       >
-      <mat-error *ngIf="form.get('apellido')?.hasError('maxlength')"
+      <mat-error *ngIf="form.get('last_name')?.hasError('maxLength')"
         >El apellido no debe superar los 50 caracteres.</mat-error
       >
     </mat-form-field>
@@ -46,7 +46,7 @@
     </mat-form-field>
 
     <!-- Contraseña -->
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="mb-4">
       <mat-label>Contraseña</mat-label>
       <input
         matInput
@@ -55,9 +55,15 @@
         formControlName="password"
       />
       <mat-icon matSuffix>lock</mat-icon>
-      <mat-error *ngIf="form.get('password')?.hasError('required')"
-        >La contraseña es obligatoria.</mat-error
-      >
+      <mat-error *ngIf="form.get('password')?.hasError('required')">
+        La contraseña es obligatoria.
+      </mat-error>
+      <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+        Al menos 8 caracteres.
+      </mat-error>
+      <mat-error *ngIf="!form.get('password')?.hasError('minlength') && form.get('password')?.hasError('pattern')">
+        Al menos 1 carácter no alfanumérico, 1 dígito numérico, 1 letra mayúscula y 1 minúscula.
+      </mat-error>
     </mat-form-field>
 
     <!-- Repetición de Contraseña -->
