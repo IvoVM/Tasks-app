@@ -1,5 +1,5 @@
 <div class="d-flex align-items-center justify-center flex-column">
-  <svg 
+  <svg
     width="230"
     height="40"
     viewBox="0 0 230 40"
@@ -56,7 +56,7 @@
     </defs>
   </svg>
 
-  <h1 class="my-5 font-700 a">¡Bienvenido!</h1>
+  <h1 class="my-5 font-700 title">¡Bienvenido!</h1>
   <div>
     <p class="text-black h4 text-start">Login</p>
     <form
@@ -86,17 +86,12 @@
         <mat-icon matSuffix>search</mat-icon>
         <mat-icon matSuffix>lock</mat-icon>
       </mat-form-field>
-      <!-- <button class="btn mb-4 input login-btn" (click)="login()">Login</button> -->
-      <app-workspace-btn
-        class="w-100"
-        [text]="'Ingresar'"
-      ></app-workspace-btn>
+      <app-workspace-btn class="w-100" [text]="'Ingresar'" (click)="login()"></app-workspace-btn>
       <app-workspace-btn
         class="w-100 mt-2"
         [text]="'Crear Usuario'"
         routerLink="/register"
         color="white"
-
       ></app-workspace-btn>
     </form>
   </div>
