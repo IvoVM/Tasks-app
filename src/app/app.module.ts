@@ -23,9 +23,6 @@ import { SearcherComponent } from './components/searcher/searcher.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InterceptorService } from './services/interceptor.service';
-import { TaskFormComponent } from './components/task-form/task-form.component';
-import { CategoryInputComponent } from './components/task-form/components/category-input/category-input.component';
-import { PriorityInputComponent } from './components/task-form/components/priority-input/priority-input.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TasksViewComponent } from './components/tasks-view/tasks-view.component';
@@ -36,6 +33,10 @@ import { TaskDetailComponent } from './components/task-detail/task-detail.compon
 import { DeleteTaskModalComponent } from './components/delete-task-modal/delete-task-modal.component';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { WorkspaceBtnComponent } from './components/workspace-btn/workspace-btn.component';
+import { NewTaskViewComponent } from './components/new-task-view/new-task-view.component';
+import { TaskFormComponent } from './components/new-task-view/components/task-form/task-form.component';
+import { PriorityInputComponent } from './components/new-task-view/components/priority-input/priority-input.component';
+import { CategoryInputComponent } from './components/new-task-view/components/category-input/category-input.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { WorkspaceBtnComponent } from './components/workspace-btn/workspace-btn.
     DeleteTaskModalComponent,
     EditFormComponent,
     WorkspaceBtnComponent,
+    NewTaskViewComponent,
   ],
   imports: [
     BrowserModule,

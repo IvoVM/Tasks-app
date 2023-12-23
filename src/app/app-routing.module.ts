@@ -1,3 +1,4 @@
+import { NewTaskViewComponent } from './components/new-task-view/new-task-view.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/auth/register/register.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'task/:id',
     component: TaskDetailComponent,
+  },
+  {
+    path: 'createTask',
+    component: NewTaskViewComponent,
   },
   {
     path: '**',
