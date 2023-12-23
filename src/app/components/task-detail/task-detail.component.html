@@ -1,1 +1,11 @@
-<p>task-detail works!</p>
+<ng-container *ngIf="!error; else elseBlock">
+  <div
+    class="d-flex justify-content-between align-items-center flex-wrap"
+  ></div>
+  <app-task [data]="data"></app-task>
+  <app-task-form></app-task-form>
+</ng-container>
+
+<ng-template #elseBlock>
+  <p class="text-danger">{{ error }}</p>
+</ng-template>
