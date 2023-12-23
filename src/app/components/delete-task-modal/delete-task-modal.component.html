@@ -1,0 +1,13 @@
+<div
+  class="d-flex justify-content-center alignitems-center flex-column p-4 rounded"
+>
+  <p class="h5">¿Desea eliminar la tarea?</p>
+  <div class="d-flex justify-content-between p-4">
+    <app-workspace-btn
+      text="Volver"
+      [color]="'white'"
+      (click)="closeDialog()"
+    ></app-workspace-btn>
+    <app-workspace-btn text="Si" (click)="deleteTask()"></app-workspace-btn>
+  </div>
+</div>
