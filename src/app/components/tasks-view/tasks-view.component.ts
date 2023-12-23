@@ -9,16 +9,44 @@ import { TaskResponse } from 'src/app/types/task.type';
 })
 export class TasksViewComponent implements OnInit {
   tasks!: TaskResponse[];
-
+  error!: string;
+  disableIncompleteBtn = false;
   constructor(private tasksService: TasksService) {}
   ngOnInit(): void {
-    this.tasksService.getTasks(10, 1, false).subscribe({
+    this.getIncompleteTasks();
+  }
+
+  getIncompleteTasks() {
+    this.tasksService.getTasks(10, 1).subscribe({
       next: (res) => {
         this.tasks = res.items;
-        console.log(res);
+        if (!this.tasks.length) {
+          this.error = 'No hay tareas incompletas';
+          this.disableIncompleteBtn = true;
+        } else {
+          this.error = '';
+        }
       },
       error: (err) => {
-        console.log(err);
+        this.error =
+          ' Hubo un error cargando la data, por favor intentelo de nuevo mas tarde';
+      },
+    });
+  }
+
+  getCompleteTasks() {
+    this.tasksService.getTasks(10, 1, true).subscribe({
+      next: (res) => {
+        this.tasks = res.items;
+        if (!this.tasks.length) {
+          this.error = 'No hay tareas completas';
+        } else {
+          this.error = '';
+        }
+      },
+      error: (err) => {
+        this.error =
+          ' Hubo un error cargando la data, por favor intentelo de nuevo mas tarde';
       },
     });
   }
