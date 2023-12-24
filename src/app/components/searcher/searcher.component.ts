@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-searcher',
@@ -7,13 +7,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./searcher.component.scss'],
 })
 export class SearcherComponent {
-  public form!: FormGroup;
+  constructor(private searcherSvc: SearchService) {}
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      filter: [''],
-    });
+  updateSearchTerm(event: any): void {
+    const searchTerm = event.target.value;
+    this.searcherSvc.updateSearchTerm(searchTerm);
   }
 }

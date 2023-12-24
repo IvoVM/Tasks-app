@@ -1,4 +1,4 @@
-<form class="d-flex justify-center flex-column form" [formGroup]="form">
+<div class="d-flex justify-center flex-column form">
   <mat-form-field appearance="fill">
     <mat-label>Búsqueda</mat-label>
 
@@ -7,8 +7,8 @@
       matInput
       class="form-input"
       type="text"
-      formControlName="filter"
+      (input)="updateSearchTerm($event)"
     />
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
-</form>
+</div>
