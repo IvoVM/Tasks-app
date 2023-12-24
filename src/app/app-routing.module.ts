@@ -36,7 +36,7 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
   },
   {
-    path: 'editTask/:id',
+    path: 'editTask/:title/:id',
     component: EditFormComponent,
     // canActivate: [AuthGuard],
   },
