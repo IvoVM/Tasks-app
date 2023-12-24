@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { TasksService } from 'src/app/services/tasks.service';
+import { TaskArrayService } from 'src/app/shared/task-array.service';
 import { Categories } from 'src/app/types/task.type';
 
 @Component({
@@ -11,7 +13,12 @@ import { Categories } from 'src/app/types/task.type';
 export class NewTaskViewComponent implements OnInit {
   categories: Categories[] = [];
 
-  constructor(private taskSvc: TasksService, private _snackBar: MatSnackBar) {}
+  constructor(
+    private taskSvc: TasksService,
+    private _snackBar: MatSnackBar,
+    private taskArraySvc: TaskArrayService,
+    private router:Router
+  ) {}
   ngOnInit(): void {
     this.getFormCategories();
   }
@@ -30,6 +37,8 @@ export class NewTaskViewComponent implements OnInit {
     this.taskSvc.createTask(event).subscribe({
       next: () => {
         this.openSnackBar('Tarea subida con exito');
+        this.taskArraySvc.increaseIncompleteTaskCount();
+        this.router.navigateByUrl('/home');
       },
       error: () => {
         this.openSnackBar(
