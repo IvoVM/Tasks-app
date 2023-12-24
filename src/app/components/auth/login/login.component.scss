@@ -2,9 +2,12 @@
   margin-top: 6rem;
 }
 
-.form {
-  width: 312px;
+.title {
+  font-family: "Rubik", sans-serif;
+}
 
+.form {
+  max-width: 500px;
   mat-form-field {
     width: 100%;
     height: 77px;
@@ -42,13 +45,10 @@
       }
     }
   }
-
-  mat-spinner {
-    height: 40px !important;
-    margin-top: 1rem !important;
-  }
 }
 
-.title {
-  font-family: "Rubik", sans-serif;
+mat-spinner {
+  height: 40px !important;
+  margin-top: 1rem !important;
+  margin-left: 38%;
 }

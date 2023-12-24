@@ -81,7 +81,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       .getSpinnerState()
       .subscribe((isVisible) => {
         this.isSpinnerVisible = isVisible;
-        console.log(isVisible);
       });
   }
 
