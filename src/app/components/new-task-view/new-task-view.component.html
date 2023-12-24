@@ -1,9 +1,13 @@
-<app-header></app-header>
-<div class="d-flex mt-4 justify-content-center align-items-center flex-column">
-  <app-task-form
-    [categories]="this.categories"
-    (sendFormData)="uploadNewTask($event)"
-    [title]="'Nueva tarea'"
-    [btnText]="'Crear'"
-  ></app-task-form>
+<div class="m-4 my-0">
+  <app-header></app-header>
+  <div class="blue-line"></div>
+
+  <div class="mt-4">
+    <app-task-form
+      [categories]="this.categories"
+      (sendFormData)="uploadNewTask($event)"
+      [title]="'Nueva tarea'"
+      [btnText]="'Crear'"
+    ></app-task-form>
+  </div>
 </div>
