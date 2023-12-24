@@ -8,14 +8,9 @@ import { Categories } from 'src/app/types/task.type';
 @Component({
   selector: 'app-new-task-view',
   templateUrl: './new-task-view.component.html',
-  styles: [
-    `
-      .blue-line {
-        border-bottom: 1px solid #5230ff;
-      }
-    `,
-  ],
 })
+
+
 export class NewTaskViewComponent implements OnInit {
   categories: Categories[] = [];
 

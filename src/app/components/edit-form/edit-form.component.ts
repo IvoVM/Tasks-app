@@ -8,13 +8,6 @@ import { Categories, Task } from 'src/app/types/task.type';
 @Component({
   selector: 'app-edit-form',
   templateUrl: './edit-form.component.html',
-  styles: [
-    `
-      .blue-line {
-        border-bottom: 1px solid #5230ff;
-      }
-    `,
-  ],
 })
 
 
