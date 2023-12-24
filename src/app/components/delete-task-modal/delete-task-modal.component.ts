@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TasksService } from 'src/app/services/tasks.service';
+import { TaskArrayService } from 'src/app/shared/task-array.service';
 import { TaskResponse } from 'src/app/types/task.type';
 
 @Component({
@@ -13,7 +14,8 @@ export class DeleteTaskModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: { data: TaskResponse },
     private dialogRef: MatDialogRef<DeleteTaskModalComponent>,
     private taskSvc: TasksService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private taskArraySvc: TaskArrayService
   ) {}
 
   closeDialog() {
@@ -26,11 +28,11 @@ export class DeleteTaskModalComponent {
     });
   }
 
-
   deleteTask() {
     const id = this.data.data.id;
     this.taskSvc.deleteTask(id).subscribe({
       next: () => {
+        this.taskArraySvc.deleteTaskById(id);
         this.closeDialog();
         this.openSnackBar(`La tarea de id:${id}, fué eliminada con éxito`);
       },
