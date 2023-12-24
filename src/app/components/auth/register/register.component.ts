@@ -64,6 +64,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
         error: (err) => {
           console.log(err);
         },
+        complete: () => {
+          this.spinnerService.hideSpinner();
+        },
       });
     }
   }
