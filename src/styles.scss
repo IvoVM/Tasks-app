@@ -1,23 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap");
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   font-family: "Rubik", sans-serif;
-
   app-root {
     height: 100%;
-
     app-home {
       display: block;
       min-height: 81.5%;
-    }
-
-    app-login,
-    app-register {
-      height: 100%;
-      display: flex;
-      justify-content: center;
     }
   }
 }

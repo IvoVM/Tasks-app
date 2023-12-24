@@ -1,14 +1,13 @@
-<div class="d-flex align-items-center justify-content-center flex-column">
+<div
+  class="d-flex align-items-center justify-content-center flex-column p-2 mt-5"
+>
   <img src="../../../../assets/workspace-title.svg" class="title-svg" />
   <div class="mt-3">
-    <div class="d-flex mt-4 align-items-center text-black font-700">
+    <div class="d-flex mt-2 align-items-center text-black font-700">
       <mat-icon routerLink="/login" class="pointer">arrow_back</mat-icon>
       <p class="mx-2 mb-0 h4">Crear cuenta</p>
     </div>
-    <form
-      class="d-flex align-items-center justify-content-center flex-column mt-3 form"
-      [formGroup]="form"
-    >
+    <form class="mt-3 form" [formGroup]="form">
       <!-- Nombre -->
       <mat-form-field appearance="fill">
         <mat-label>Nombre</mat-label>
@@ -61,27 +60,25 @@
       </mat-form-field>
       <!-- Contraseña -->
 
-      <div class="d-flex flex-column">
-        <mat-form-field appearance="fill">
-          <mat-label>Contraseña</mat-label>
-          <input
-            matInput
-            class="form-input"
-            [type]="showPassword ? 'text' : 'password'"
-            formControlName="password"
-          />
-          <mat-icon
-            class="pointer"
-            matSuffix
-            (click)="this.showPassword = !this.showPassword"
-            >{{ showPassword ? "remove_red_eye" : "lock" }}</mat-icon
-          >
-        </mat-form-field>
-        <p class="password-text">
-          Mínimo: 8 caracteres, 1 carácter no alfanumérico <br />(!, . -, etc.),
-          1 dígito numérico y 1 letra mayúscula.
-        </p>
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          class="form-input"
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+        />
+        <mat-icon
+          class="pointer"
+          matSuffix
+          (click)="this.showPassword = !this.showPassword"
+          >{{ showPassword ? "remove_red_eye" : "lock" }}</mat-icon
+        >
+      </mat-form-field>
+      <p class="password-text">
+        Mínimo: 8 caracteres, 1 carácter no alfanumérico <br />(!, . -, etc.), 1
+        dígito numérico y 1 letra mayúscula.
+      </p>
 
       <!-- Repetición de Contraseña -->
       <mat-form-field appearance="fill">
@@ -108,12 +105,14 @@
       </mat-form-field>
 
       <ng-container *ngIf="!this.showSpinner; else spinner">
-        <app-workspace-btn
-          class="w-100"
-          [text]="'Crear usuario'"
-          (click)="register()"
-          [disabled]="!this.form.valid"
-        ></app-workspace-btn>
+        <div class="mb-4">
+          <app-workspace-btn
+            class="w-100 mb-2"
+            [text]="'Crear usuario'"
+            (click)="register()"
+            [disabled]="!this.form.valid"
+          ></app-workspace-btn>
+        </div>
 
         <app-workspace-btn
           class="w-100 mt-3"
