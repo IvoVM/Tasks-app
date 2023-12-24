@@ -34,20 +34,23 @@
           >{{ showPassword ? "remove_red_eye" : "lock" }}</mat-icon
         >
       </mat-form-field>
+      <ng-container *ngIf="!this.isSpinnerVisible; else spinner">
+        <app-workspace-btn
+          class="w-100"
+          [text]="'Ingresar'"
+          (click)="login()"
+          [disabled]="!this.form.valid"
+        ></app-workspace-btn>
 
-      <app-workspace-btn
-        class="w-100"
-        [text]="'Ingresar'"
-        (click)="login()"
-        [disabled]="!this.form.valid"
-      ></app-workspace-btn>
+        <app-workspace-btn
+          class="w-100 mt-2"
+          [text]="'Crear Usuario'"
+          routerLink="/register"
+          color="white"
+        ></app-workspace-btn
+      ></ng-container>
 
-      <app-workspace-btn
-        class="w-100 mt-2"
-        [text]="'Crear Usuario'"
-        routerLink="/register"
-        color="white"
-      ></app-workspace-btn>
+      <ng-template #spinner> <mat-spinner strokeWidth="20" ></mat-spinner> </ng-template>
     </form>
   </div>
 </div>

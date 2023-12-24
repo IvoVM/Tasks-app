@@ -1,18 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { SpinnerService } from 'src/app/shared/services/spinner.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
   showPassword = false;
+  spinnerSubscription: Subscription = new Subscription();
+  isSpinnerVisible = false;
 
   constructor(
     private fb: FormBuilder,
@@ -20,7 +24,7 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private _snackBar: MatSnackBar,
-
+    private spinnerService: SpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -35,9 +39,13 @@ export class LoginComponent implements OnInit {
         ],
       ],
     });
+
+    this.subscribeSpinnerService();
   }
   login() {
     if (this.form.valid) {
+      this.spinnerService.showSpinner();
+      // console.log(this.isSpinnerVisible);
       const body = {
         email: this.form.value.email,
         password: this.form.value.password,
@@ -51,7 +59,12 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('home');
         },
         error: (err) => {
-          this.openSnackBar('Error, el usuario o la contraseña son incorrectos')
+          this.openSnackBar(
+            'Error, el usuario o la contraseña son incorrectos'
+          );
+        },
+        complete: () => {
+          this.spinnerService.hideSpinner();
         },
       });
     }
@@ -62,5 +75,17 @@ export class LoginComponent implements OnInit {
       duration: 4000,
     });
   }
-  
+
+  subscribeSpinnerService() {
+    this.spinnerSubscription = this.spinnerService
+      .getSpinnerState()
+      .subscribe((isVisible) => {
+        this.isSpinnerVisible = isVisible;
+        console.log(isVisible);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.spinnerSubscription.unsubscribe();
+  }
 }
