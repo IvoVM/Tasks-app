@@ -34,12 +34,13 @@ import { DeleteTaskModalComponent } from './components/delete-task-modal/delete-
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { WorkspaceBtnComponent } from './components/workspace-btn/workspace-btn.component';
 import { NewTaskViewComponent } from './components/new-task-view/new-task-view.component';
-import { InputComponent } from './shared/components/input/input.component';
 import { SpinnerInterceptorService } from './shared/interceptors/spinner-interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { PriorityInputComponent } from './shared/components/task-form/components/priority-input/priority-input.component';
-import { CategoryInputComponent } from './shared/components/task-form/components/category-input/category-input.component';
+import { PriorityInputComponent } from './shared/components/inputs/priority-input/priority-input.component';
+import { CategoryInputComponent } from './shared/components/inputs/category-input/category-input.component';
 import { TaskFormComponent } from './shared/components/task-form/task-form.component';
+import { InputTextComponent } from './shared/components/inputs/input-text/input-text.component';
+import { InputPasswordComponent } from './shared/components/inputs/input-password/input-password.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { TaskFormComponent } from './shared/components/task-form/task-form.compo
     EditFormComponent,
     WorkspaceBtnComponent,
     NewTaskViewComponent,
-    InputComponent,
+    InputTextComponent,
+    InputPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +87,6 @@ import { TaskFormComponent } from './shared/components/task-form/task-form.compo
     MatProgressSpinnerModule,
   ],
   providers: [
-
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
