@@ -136,7 +136,7 @@
 
     <div class="task" [routerLink]="['/task', data.id]">
       <p class="h3 text-black mb-2 mx-1 mt-4 pointer">
-        {{ data.title | truncateText : 15 }}
+        {{ data.title | truncateText : 25 }}
       </p>
       <p class="text-grey mx-1 mt-3 task-text">
         {{ data.description | truncateText : 85 }}
