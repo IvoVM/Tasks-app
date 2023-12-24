@@ -107,19 +107,24 @@
         >
       </mat-form-field>
 
-      <app-workspace-btn
-        class="w-100"
-        [text]="'Crear usuario'"
-        (click)="register()"
-        [disabled]="!this.form.valid"
-      ></app-workspace-btn>
+      <ng-container *ngIf="!this.showSpinner; else spinner">
+        <app-workspace-btn
+          class="w-100"
+          [text]="'Crear usuario'"
+          (click)="register()"
+          [disabled]="!this.form.valid"
+        ></app-workspace-btn>
 
-      <app-workspace-btn
-        class="w-100 mt-3"
-        [text]="'Volver'"
-        routerLink="/login"
-        color="white"
-      ></app-workspace-btn>
+        <app-workspace-btn
+          class="w-100 mt-3"
+          [text]="'Volver'"
+          routerLink="/login"
+          color="white"
+        ></app-workspace-btn>
+      </ng-container>
+      <ng-template #spinner>
+        <mat-spinner strokeWidth="20"></mat-spinner>
+      </ng-template>
     </form>
   </div>
 </div>
