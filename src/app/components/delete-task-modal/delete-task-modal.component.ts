@@ -32,7 +32,10 @@ export class DeleteTaskModalComponent {
     const id = this.data.data.id;
     this.taskSvc.deleteTask(id).subscribe({
       next: () => {
+        //Update View trough subjects
         this.taskArraySvc.deleteTaskById(id);
+        if (!this.data.data.is_completed)
+          this.taskArraySvc.decreaseIncompleteTaskCount();
         this.closeDialog();
         this.openSnackBar(`La tarea de id:${id}, fué eliminada con éxito`);
       },
