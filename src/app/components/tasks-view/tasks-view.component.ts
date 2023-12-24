@@ -3,42 +3,84 @@ import { TaskResponse } from 'src/app/types/task.type';
 import { Subscription } from 'rxjs';
 import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 import { TasksService } from 'src/app/services/tasks.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-tasks-view',
   templateUrl: './tasks-view.component.html',
 })
 export class TasksViewComponent implements OnInit, OnDestroy {
-  tasks!: TaskResponse[];
-  error!: string;
+  tasks: TaskResponse[] = [];
+  error = '';
   incompletedBtnSelected = true;
 
   private tasksSubscription: Subscription = new Subscription();
+  private searchTermSubscription: Subscription = new Subscription();
 
   constructor(
     private taskArraySvc: TaskArrayService,
-    private taskSvc: TasksService
+    private taskSvc: TasksService,
+    private searcherSvc: SearchService
   ) {}
 
   ngOnInit(): void {
     this.subscribeToTasks();
+    this.subscribeToSearchTerm();
     this.getIncompleteTasks();
   }
 
   ngOnDestroy(): void {
     this.tasksSubscription.unsubscribe();
+    this.searchTermSubscription.unsubscribe();
   }
 
-  //Se Subscribe a los cambios en el array para actualizar el listado de tasks.
-  subscribeToTasks() {
+  //subscriptions
+  subscribeToTasks(): void {
     this.tasksSubscription = this.taskArraySvc.tasks$.subscribe((tasks) => {
-      if (this.incompletedBtnSelected) {
-        this.tasks = tasks.filter((task) => !task.is_completed);
-      } else {
-        this.tasks = tasks.filter((task) => task.is_completed);
-      }
+      this.filterTasks(tasks);
     });
   }
+
+  subscribeToSearchTerm(): void {
+    this.searchTermSubscription = this.searcherSvc.searchTerm$.subscribe(
+      (searchTerm) => {
+        this.taskArraySvc.updateTasks(this.tasks);
+        if (searchTerm === '') {
+          // If searchTerm is empty, fetch all tasks based on the selected button
+          if (this.incompletedBtnSelected) {
+            this.getIncompleteTasks();
+          } else {
+            this.getCompleteTasks();
+          }
+        } else {
+          this.filterTasks(this.tasks, searchTerm);
+        }
+      }
+    );
+  }
+
+  //filter
+  filterTasks(tasks: TaskResponse[], searchTerm: string = ''): void {
+    if (this.incompletedBtnSelected) {
+      this.tasks = tasks.filter(
+        (task) => !task.is_completed && this.matchesSearchTerm(task, searchTerm)
+      );
+    } else {
+      this.tasks = tasks.filter(
+        (task) => task.is_completed && this.matchesSearchTerm(task, searchTerm)
+      );
+    }
+  }
+
+  matchesSearchTerm(task: TaskResponse, searchTerm: string): boolean {
+    return (
+      task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      task.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      task.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
+
+  // HTTP request
 
   getIncompleteTasks() {
     this.incompletedBtnSelected = true;
