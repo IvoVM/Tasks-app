@@ -35,7 +35,14 @@ export class TasksService {
   }
 
   updateTask(id: string, task: Task): Observable<Task> {
-    return this.http.put<Task>(`${this.apiUrl}/${id}`, task);
+    let body = {
+      id: id,
+      title: task.title,
+      description: task.description,
+      priority: task.priority,
+      category_id: task.category_id,
+    };
+    return this.http.put<Task>(`${this.apiUrl}/${id}`, body);
   }
 
   updateTaskStatus(body: {
