@@ -34,9 +34,9 @@ import { DeleteTaskModalComponent } from './components/delete-task-modal/delete-
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { WorkspaceBtnComponent } from './components/workspace-btn/workspace-btn.component';
 import { NewTaskViewComponent } from './components/new-task-view/new-task-view.component';
-import { TaskFormComponent } from './components/new-task-view/components/task-form/task-form.component';
-import { PriorityInputComponent } from './components/new-task-view/components/priority-input/priority-input.component';
-import { CategoryInputComponent } from './components/new-task-view/components/category-input/category-input.component';
+import { TaskFormComponent } from './shared/components/task-form/task-form.component';
+import { PriorityInputComponent } from './shared/components/task-form/components/priority-input/priority-input.component';
+import { CategoryInputComponent } from './shared/components/task-form/components/category-input/category-input.component';
 import { InputComponent } from './shared/components/input/input.component';
 import { SpinnerInterceptorService } from './shared/interceptors/spinner-interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
