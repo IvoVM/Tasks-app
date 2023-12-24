@@ -10,6 +10,7 @@ import { Categories } from 'src/app/types/task.type';
   templateUrl: './new-task-view.component.html',
   styleUrls: ['./new-task-view.component.scss'],
 })
+
 export class NewTaskViewComponent implements OnInit {
   categories: Categories[] = [];
 
