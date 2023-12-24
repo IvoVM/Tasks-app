@@ -55,7 +55,7 @@ export class TasksService {
 
   getIncompleteTasksLenght(): Observable<{ incomplete_task_count: number }> {
     return this.http.get<{ incomplete_task_count: number }>(
-      `${environment.apiUrl}` + '/incomplete-count'
+      `${this.apiUrl}` + '/incomplete-count'
     );
   }
 }
