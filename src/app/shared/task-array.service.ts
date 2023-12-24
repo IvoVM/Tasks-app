@@ -7,16 +7,37 @@ import { TaskResponse } from '../types/task.type';
   providedIn: 'root',
 })
 export class TaskArrayService {
+  //Tasks views
   private tasksSubject = new BehaviorSubject<TaskResponse[]>([]);
   tasks$ = this.tasksSubject.asObservable();
 
-   updateTasks(tasks: TaskResponse[]) {
-    this.tasksSubject.next(tasks);
+  //Header icon
+  private incompletedTaskLengthSubject = new BehaviorSubject<number>(0);
+  incompletedTasksLenght$ = this.incompletedTaskLengthSubject.asObservable();
+
+  // header icon
+  setFirstValue(value: number) {
+    this.incompletedTaskLengthSubject.next(value);
   }
 
-  addTask(newTask: TaskResponse) {
-    const currentTasks = this.tasksSubject.value;
-    this.updateTasks([...currentTasks, newTask]);
+  increaseIncompleteTaskCount(): void {
+    this.incompletedTaskLengthSubject.next(
+      this.incompletedTaskLengthSubject.value + 1
+    );
+  }
+
+  decreaseIncompleteTaskCount(): void {
+    if (this.incompletedTaskLengthSubject.value > 0) {
+      this.incompletedTaskLengthSubject.next(
+        this.incompletedTaskLengthSubject.value - 1
+      );
+    }
+  }
+
+  // task-view Component
+
+  updateTasks(tasks: TaskResponse[]) {
+    this.tasksSubject.next(tasks);
   }
 
   deleteTaskById(taskId: number) {
@@ -34,9 +55,5 @@ export class TaskArrayService {
       return task;
     });
     this.updateTasks(updatedTasks);
-  }
-
-  updateTasksFromServer(tasks: TaskResponse[]) {
-    this.updateTasks(tasks);
   }
 }
