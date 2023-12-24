@@ -30,18 +30,16 @@ export class TasksViewComponent implements OnInit, OnDestroy {
     this.tasksSubscription.unsubscribe();
   }
 
-
   //Se Subscribe a los cambios en el array para actualizar el listado de tasks.
   subscribeToTasks() {
     this.tasksSubscription = this.taskArraySvc.tasks$.subscribe((tasks) => {
       if (this.incompletedBtnSelected) {
-        this.tasks = tasks.filter(task => !task.is_completed);
+        this.tasks = tasks.filter((task) => !task.is_completed);
       } else {
-        this.tasks = tasks.filter(task => task.is_completed);
+        this.tasks = tasks.filter((task) => task.is_completed);
       }
     });
   }
-  
 
   getIncompleteTasks() {
     this.incompletedBtnSelected = true;
