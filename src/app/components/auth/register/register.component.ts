@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authSvc: AuthService,
     private router: Router,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -47,28 +49,36 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   register() {
-    if (
-      this.form.valid &&
-      this.form.value.password === this.form.value.repeatPassword
-    ) {
-      let body: User = {
-        email: this.form.value.email,
-        first_name: this.form.value.first_name,
-        last_name: this.form.value.last_name,
-        password: this.form.value.password,
-      };
-      this.authSvc.register(body).subscribe({
-        next: () => {
-          this.router.navigateByUrl('/login');
-        },
-        error: (err) => {
-          console.log(err);
-        },
-        complete: () => {
-          this.spinnerService.hideSpinner();
-        },
-      });
-    }
+    if (this.form.invalid)
+      return this.openSnackBar(
+        'El formulario no cumple los requisitos, compruebe la data colocada.'
+      );
+
+    if (this.form.value.password !== this.form.value.repeatPassword)
+      return this.openSnackBar(
+        'Atención las contraseñas colocadas no coinciden.'
+      );
+
+    let body: User = {
+      email: this.form.value.email,
+      first_name: this.form.value.first_name,
+      last_name: this.form.value.last_name,
+      password: this.form.value.password,
+    };
+    this.authSvc.register(body).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/login');
+        this.openSnackBar(
+          'Cuenta creada exitosamente, proceda a logearse en la aplicación'
+        );
+      },
+      error: () => {
+        this.openSnackBar('Ese email no está disponible');
+      },
+      complete: () => {
+        this.spinnerService.hideSpinner();
+      },
+    });
   }
 
   subscribeSpinnerService() {
@@ -76,8 +86,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .getSpinnerState()
       .subscribe((isVisible) => {
         this.showSpinner = isVisible;
-        console.log(isVisible);
       });
+  }
+
+  openSnackBar(msg: string) {
+    this._snackBar.open(msg, 'Cerrar', {
+      duration: 4000,
+    });
   }
 
   ngOnDestroy(): void {
