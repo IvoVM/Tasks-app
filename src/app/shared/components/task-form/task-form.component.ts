@@ -15,6 +15,8 @@ export class TaskFormComponent {
   inputValue = 1;
   selectedCategoryId!: number;
   error!: string;
+  @Input() title!: string;
+  @Input() subTitle!: string;
 
   @Input() categories: Categories[] = [];
   @Output() sendFormData = new EventEmitter();
@@ -71,4 +73,3 @@ export class TaskFormComponent {
     }
   }
 }
-
