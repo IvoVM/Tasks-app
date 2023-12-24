@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TaskResponse } from 'src/app/types/task.type';
 import { Subscription } from 'rxjs';
-import { TaskArrayService } from 'src/app/shared/task-array.service';
+import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({

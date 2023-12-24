@@ -3,7 +3,7 @@ import { TasksService } from 'src/app/services/tasks.service';
 import { TaskResponse } from 'src/app/types/task.type';
 import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskArrayService } from 'src/app/shared/task-array.service';
+import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 
 @Component({
   selector: 'app-task',

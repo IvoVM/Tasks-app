@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TasksService } from 'src/app/services/tasks.service';
-import { TaskArrayService } from 'src/app/shared/task-array.service';
+import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 import { TaskResponse } from 'src/app/types/task.type';
 
 @Component({
