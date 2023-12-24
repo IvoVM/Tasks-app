@@ -1,12 +1,15 @@
 <app-header></app-header>
-<div class="d-flex mx-4 home-title justify-content-between mt-3">
-  <p class="h3">Tareas</p>
-  <img
-    src="../../../assets/icons/plus.svg"
-    class="pointer mb-1"
-    [routerLink]="'/createTask'"
-  />
+<div class="mx-4">
+  <div class="d-flex  home-title justify-content-between mt-3">
+    <p class="h3">Tareas</p>
+    <img
+      src="../../../assets/icons/plus.svg"
+      class="pointer mb-1"
+      [routerLink]="'/createTask'"
+    />
+  </div>
+  
+  <app-searcher></app-searcher>
+  <app-tasks-view></app-tasks-view>
 </div>
 
-<app-searcher></app-searcher>
-<app-tasks-view></app-tasks-view>

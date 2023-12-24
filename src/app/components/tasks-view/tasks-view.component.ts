@@ -7,7 +7,6 @@ import { TasksService } from 'src/app/services/tasks.service';
 @Component({
   selector: 'app-tasks-view',
   templateUrl: './tasks-view.component.html',
-  styleUrls: ['./tasks-view.component.scss'],
 })
 export class TasksViewComponent implements OnInit, OnDestroy {
   tasks!: TaskResponse[];
