@@ -6,6 +6,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './Guards/auth.guard';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -27,10 +28,17 @@ const routes: Routes = [
   {
     path: 'task/:id',
     component: TaskDetailComponent,
+    // canActivate: [AuthGuard],
   },
   {
     path: 'createTask',
     component: NewTaskViewComponent,
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'editTask/:id',
+    component: EditFormComponent,
+    // canActivate: [AuthGuard],
   },
   {
     path: '**',
