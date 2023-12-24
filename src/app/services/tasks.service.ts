@@ -42,7 +42,7 @@ export class TasksService {
       priority: task.priority,
       category_id: task.category_id,
     };
-    return this.http.put<Task>(`${this.apiUrl}/${id}`, body);
+    return this.http.put<Task>(`${this.apiUrl}`, body);
   }
 
   updateTaskStatus(body: {
