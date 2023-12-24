@@ -22,7 +22,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SearcherComponent } from './components/searcher/searcher.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogoutComponent } from './components/logout/logout.component';
-import { InterceptorService } from './services/interceptor.service';
+import { TokenInterceptorService } from './shared/interceptors/token-interceptor.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TasksViewComponent } from './components/tasks-view/tasks-view.component';
@@ -37,6 +37,9 @@ import { NewTaskViewComponent } from './components/new-task-view/new-task-view.c
 import { TaskFormComponent } from './components/new-task-view/components/task-form/task-form.component';
 import { PriorityInputComponent } from './components/new-task-view/components/priority-input/priority-input.component';
 import { CategoryInputComponent } from './components/new-task-view/components/category-input/category-input.component';
+import { InputComponent } from './shared/components/input/input.component';
+import { SpinnerInterceptorService } from './shared/interceptors/spinner-interceptor.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import { CategoryInputComponent } from './components/new-task-view/components/ca
     EditFormComponent,
     WorkspaceBtnComponent,
     NewTaskViewComponent,
+    InputComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,11 +82,17 @@ import { CategoryInputComponent } from './components/new-task-view/components/ca
     MatDialogModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
+      useClass: SpinnerInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
       multi: true,
     },
   ],
