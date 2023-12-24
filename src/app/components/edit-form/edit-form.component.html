@@ -1,0 +1,7 @@
+<app-header></app-header>
+<div class="mt-4">
+  <app-task-form
+    [categories]="this.categories"
+    (sendFormData)="editTask($event)"
+  ></app-task-form>
+</div>
