@@ -71,6 +71,7 @@
             formControlName="password"
           />
           <mat-icon
+            class="pointer"
             matSuffix
             (click)="this.showPassword = !this.showPassword"
             >{{ showPassword ? "remove_red_eye" : "lock" }}</mat-icon
@@ -91,9 +92,12 @@
           [type]="showPassword ? 'text' : 'password'"
           formControlName="repeatPassword"
         />
-        <mat-icon matSuffix (click)="this.showPassword = !this.showPassword">{{
-          showPassword ? "remove_red_eye" : "lock"
-        }}</mat-icon>
+        <mat-icon
+          matSuffix
+          (click)="this.showPassword = !this.showPassword"
+          class="pointer"
+          >{{ showPassword ? "remove_red_eye" : "lock" }}</mat-icon
+        >
         <mat-error
           *ngIf="
             form.get('repeatPassword')?.hasError('required') ||
