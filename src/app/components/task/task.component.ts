@@ -26,10 +26,13 @@ export class TaskComponent {
       id: this.data.id,
     };
 
-    this.taskArraySvc.toggleTaskCompletion(this.data.id);
-
     this.taskService.updateTaskStatus(body).subscribe({
-      next: () => {},
+      next: () => {
+        is_completed
+          ? this.taskArraySvc.decreaseIncompleteTaskCount()
+          : this.taskArraySvc.increaseIncompleteTaskCount();
+        this.taskArraySvc.toggleTaskCompletion(this.data.id);
+      },
       error: (err) => {
         console.log(err);
       },
