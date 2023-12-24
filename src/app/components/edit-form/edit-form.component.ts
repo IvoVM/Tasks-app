@@ -1,22 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TasksService } from 'src/app/services/tasks.service';
 import { TaskArrayService } from 'src/app/shared/services/task-array.service';
-import { Categories } from 'src/app/types/task.type';
+import { Categories, Task } from 'src/app/types/task.type';
 
 @Component({
   selector: 'app-edit-form',
   templateUrl: './edit-form.component.html',
-  styleUrls: ['./edit-form.component.scss'],
+  styles: [
+    `
+      .blue-line {
+        border-bottom: 1px solid #5230ff;
+      }
+    `,
+  ],
 })
+
+
 export class EditFormComponent implements OnInit {
   categories: Categories[] = [];
+  id = this.route.snapshot.paramMap.get('id');
+  taskTitle = this.route.snapshot.paramMap.get('title');
 
   constructor(
     private taskSvc: TasksService,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.getFormCategories();
@@ -25,6 +36,7 @@ export class EditFormComponent implements OnInit {
     this.taskSvc.getCategories().subscribe({
       next: (res) => {
         this.categories = res;
+        console.log(res);
       },
       error: (err) => {
         console.log('error fetching categories', err);
@@ -32,7 +44,19 @@ export class EditFormComponent implements OnInit {
     });
   }
 
-  editTask(event: any) {}
+  editTask(event: Task) {
+    if (this.id) {
+      this.taskSvc.updateTask(this.id, event).subscribe({
+        next: () => {
+          this.router.navigateByUrl('home');
+          console.log('Task updated');
+        },
+        error: () => {
+          console.log('error updating');
+        },
+      });
+    }
+  }
 
   openSnackBar(msg: string) {
     this._snackBar.open(msg, 'Cerrar', {

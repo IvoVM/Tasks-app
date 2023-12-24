@@ -1,7 +1,13 @@
-<app-header></app-header>
-<div class="mt-4">
-  <app-task-form
-    [categories]="this.categories"
-    (sendFormData)="editTask($event)"
-  ></app-task-form>
+<div class="m-4">
+  <app-header></app-header>
+  <div class="blue-line"></div>
+  <div class="mt-4">
+      <app-task-form
+        [categories]="this.categories"
+        (sendFormData)="editTask($event)"
+        [title]="'Editar'"
+        [subTitle]="taskTitle ? taskTitle : ''"
+        [btnText]="'Guardar'"
+      ></app-task-form>
+  </div>
 </div>
