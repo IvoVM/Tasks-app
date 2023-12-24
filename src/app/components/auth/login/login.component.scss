@@ -6,6 +6,9 @@
   mat-form-field {
     width: 312px;
     height: 77px;
+    .pointer {
+      cursor: pointer;
+    }
     mat-label {
       font-weight: 500;
     }

@@ -27,9 +27,12 @@
           [type]="showPassword ? 'text' : 'password'"
           formControlName="password"
         />
-        <mat-icon matSuffix (click)="this.showPassword = !this.showPassword">{{
-          showPassword ? "remove_red_eye" : "lock"
-        }}</mat-icon>
+        <mat-icon
+          matSuffix
+          (click)="this.showPassword = !this.showPassword"
+          class="pointer"
+          >{{ showPassword ? "remove_red_eye" : "lock" }}</mat-icon
+        >
       </mat-form-field>
 
       <app-workspace-btn
