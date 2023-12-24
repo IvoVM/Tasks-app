@@ -44,11 +44,18 @@ export class TasksService {
   }): Observable<Task> {
     return this.http.put<Task>(`${this.apiUrl}` + '/status', body);
   }
+
   deleteTask(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
   getCategories(): Observable<Categories[]> {
     return this.http.get<Categories[]>(`${environment.apiUrl}` + '/Categories');
+  }
+
+  getIncompleteTasksLenght(): Observable<{ incomplete_task_count: number }> {
+    return this.http.get<{ incomplete_task_count: number }>(
+      `${environment.apiUrl}` + '/incomplete-count'
+    );
   }
 }
