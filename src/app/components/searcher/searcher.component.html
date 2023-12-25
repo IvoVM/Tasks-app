@@ -1,14 +1,14 @@
-<div class="d-flex justify-center flex-column form">
+<!-- TuComponente.component.html -->
+<form [formGroup]="searchForm" class="d-flex justify-center flex-column form">
   <mat-form-field appearance="fill">
     <mat-label>Búsqueda</mat-label>
-
     <input
       autocomplete="false"
       matInput
       class="form-input"
       type="text"
-      (input)="updateSearchTerm($event)"
+      formControlName="search"
     />
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
-</div>
+</form>

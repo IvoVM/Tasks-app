@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { SearchService } from 'src/app/services/search.service';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-searcher',
@@ -7,10 +8,19 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./searcher.component.scss'],
 })
 export class SearcherComponent {
-  constructor(private searcherSvc: SearchService) {}
+  searchForm: FormGroup = new FormGroup({
+    search: new FormControl(''),
+  });
 
-  updateSearchTerm(event: any): void {
-    const searchTerm = event.target.value;
-    this.searcherSvc.updateSearchTerm(searchTerm);
+  @Output() searchValueChanged: EventEmitter<string> =
+    new EventEmitter<string>();
+
+  ngOnInit() {
+    this.searchForm
+      .get('search')
+      ?.valueChanges.pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((searchText: string) => {
+        this.searchValueChanged.emit(searchText);
+      });
   }
 }
