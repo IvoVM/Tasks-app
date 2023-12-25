@@ -4,7 +4,7 @@
   font-family: "Rubik", sans-serif;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 32px rgba(0, 0, 0, 0.3);
   min-height: 300px;
-  width: 600px;
+  max-width: 600px;
   p {
     margin-bottom: 0;
   }
@@ -78,6 +78,6 @@
 .ml-1 {
   margin-left: 1rem;
 }
-mat-icon{
-  color: #5230FF;
+mat-icon {
+  color: #5230ff;
 }
