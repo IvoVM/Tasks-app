@@ -4,7 +4,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
-import { UserService } from './user.service';
+import { UserService } from '../shared/services/user.service';
 import { UserResponse } from '../types/user.type';
 
 @Injectable({
