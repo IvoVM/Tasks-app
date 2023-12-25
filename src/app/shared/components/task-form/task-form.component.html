@@ -59,10 +59,15 @@
         </p>
       </div>
 
-      <app-workspace-btn
-        [text]="btnText"
-        (click)="manageFormData()"
-      ></app-workspace-btn>
+      <ng-container *ngIf="!showSpinner; else spinner">
+        <app-workspace-btn
+          [text]="btnText"
+          (click)="manageFormData()"
+        ></app-workspace-btn>
+      </ng-container>
+      <ng-template #spinner>
+        <mat-spinner strokeWidth="20"></mat-spinner>
+      </ng-template>
     </form>
   </div>
 </div>

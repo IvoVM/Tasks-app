@@ -18,7 +18,7 @@ export class TaskFormComponent {
   @Input() title!: string;
   @Input() subTitle!: string;
   @Input() btnText!: string;
-
+  @Input() showSpinner: boolean = false;
 
   @Input() categories: Categories[] = [];
   @Output() sendFormData = new EventEmitter();
