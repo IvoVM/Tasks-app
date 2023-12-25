@@ -26,6 +26,20 @@ export class TasksService {
     return this.http.get<TaskPage>(this.apiUrl, { params });
   }
 
+  searchTasks(
+    search_text: string,
+    completed: boolean = false
+  ): Observable<TaskPage> {
+    const params = {
+      page_size: 20,
+      page_number: 1,
+      completed,
+      search_text,
+    };
+
+    return this.http.get<TaskPage>(this.apiUrl, { params });
+  }
+
   getTaskById(id: string): Observable<TaskResponse> {
     return this.http.get<TaskResponse>(`${this.apiUrl}/${id}`);
   }
