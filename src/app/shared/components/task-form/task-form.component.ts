@@ -45,7 +45,6 @@ export class TaskFormComponent {
 
   onCategorySelected(categoryId: number) {
     this.selectedCategoryId = categoryId;
-    console.log(this.selectedCategoryId);
   }
 
   openSnackBar(msg: string) {
