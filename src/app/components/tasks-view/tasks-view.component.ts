@@ -3,7 +3,6 @@ import { TaskResponse } from 'src/app/types/task.type';
 import { Subscription } from 'rxjs';
 import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 import { TasksService } from 'src/app/services/tasks.service';
-import { SearchService } from 'src/app/services/search.service';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
 
 @Component({
@@ -111,7 +110,34 @@ export class TasksViewComponent implements OnInit, OnDestroy {
     });
   }
 
-  //Tasks array management, push or create new one
+  onSearchValueChanged(searchResults: any): void {
+    const taskObservable = this.incompletedBtnSelected
+      ? this.taskSvc.searchTasks(searchResults)
+      : this.taskSvc.searchTasks(searchResults, true);
+
+    taskObservable.subscribe({
+      next: (res) => {
+        this.updateTasksList(res.items);
+
+        if (!this.tasks.length) {
+          this.error = this.incompletedBtnSelected
+            ? 'No hay tareas incompletas'
+            : 'No hay tareas completas';
+        } else {
+          this.error = '';
+        }
+      },
+      error: () => {
+        this.error =
+          'Hubo un error cargando la data, por favor inténtelo de nuevo más tarde';
+      },
+      complete: () => {
+        this.spinnerService.hideSpinner();
+      },
+    });
+  }
+
+  //Tasks array management, push || create new one
   updateTasksList(tasksArray: TaskResponse[]) {
     this.taskArraySvc.updateTasks(tasksArray);
   }
