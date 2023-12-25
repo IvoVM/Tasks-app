@@ -1,4 +1,4 @@
-import { NewTaskViewComponent } from './modules/home/components/new-task-view/new-task-view.component';
+import { NewTaskViewComponent } from './modules/home/components/create-new-task/create-new-task.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './modules/auth/register/register.component';

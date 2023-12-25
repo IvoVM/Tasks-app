@@ -12,7 +12,7 @@ import { TaskComponent } from './components/task/task.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 import { TasksViewComponent } from './components/tasks-view/tasks-view.component';
 import { HomeComponent } from './home.component';
-import { NewTaskViewComponent } from './components/new-task-view/new-task-view.component';
+import { NewTaskViewComponent } from './components/create-new-task/create-new-task.component';
 
 @NgModule({
   declarations: [

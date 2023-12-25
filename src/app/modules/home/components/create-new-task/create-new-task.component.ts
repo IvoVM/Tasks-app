@@ -9,7 +9,7 @@ import { Categories } from 'src/app/types/task.type';
 
 @Component({
   selector: 'app-new-task-view',
-  templateUrl: './new-task-view.component.html',
+  templateUrl: './create-new-task.component.html',
 })
 export class NewTaskViewComponent implements OnInit, OnDestroy {
   categories: Categories[] = [];
