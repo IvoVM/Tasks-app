@@ -33,7 +33,7 @@
           >
         </mat-form-field>
       </form>
-      <ng-container *ngIf="!this.isSpinnerVisible; else spinner">
+      <ng-container *ngIf="!this.showSpinner; else spinner">
         <app-workspace-btn
           class="w-100"
           [text]="'Ingresar'"

@@ -16,8 +16,9 @@ import { SpinnerService } from 'src/app/shared/services/spinner.service';
 export class LoginComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
   showPassword = false;
+
   spinnerSubscription: Subscription = new Subscription();
-  isSpinnerVisible = false;
+  showSpinner = false;
 
   constructor(
     private fb: FormBuilder,
@@ -80,7 +81,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.spinnerSubscription = this.spinnerService
       .getSpinnerState()
       .subscribe((isVisible) => {
-        this.isSpinnerVisible = isVisible;
+        this.showSpinner = isVisible;
       });
   }
 
