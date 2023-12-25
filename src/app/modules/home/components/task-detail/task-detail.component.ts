@@ -2,9 +2,9 @@ import { ActivatedRoute } from '@angular/router';
 import { TasksService } from '../../services/tasks.service';
 import { Component, OnInit } from '@angular/core';
 import { TaskResponse } from 'src/app/types/task.type';
-import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TasksListService } from 'src/app/shared/services/tasksList.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -18,7 +18,7 @@ export class TaskDetailComponent implements OnInit {
   constructor(
     private tasksService: TasksService,
     private route: ActivatedRoute,
-    private taskArraySvc:TaskArrayService,
+    private taskArraySvc:TasksListService,
     private dialog: MatDialog,
 
   ) {}

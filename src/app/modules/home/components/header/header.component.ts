@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LogoutComponent } from '../logout/logout.component';
 import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { Subscription } from 'rxjs';
-import { TaskArrayService } from 'src/app/shared/services/task-array.service';
+import { TasksListService } from 'src/app/shared/services/tasksList.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     private userSvc: UserService,
     private dialog: MatDialog,
     private taskSvc: TasksService,
-    private taskArraySvc: TaskArrayService
+    private taskArraySvc: TasksListService
   ) {}
 
   ngOnInit(): void {

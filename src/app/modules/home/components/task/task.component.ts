@@ -3,7 +3,7 @@ import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { TaskResponse } from 'src/app/types/task.type';
 import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskArrayService } from 'src/app/shared/services/task-array.service';
+import { TasksListService } from 'src/app/shared/services/tasksList.service';
 
 @Component({
   selector: 'app-task',
@@ -16,7 +16,7 @@ export class TaskComponent {
   constructor(
     private taskService: TasksService,
     private dialog: MatDialog,
-    private taskArraySvc: TaskArrayService
+    private taskArraySvc: TasksListService
   ) {}
 
   onCheckboxChange($event: any) {

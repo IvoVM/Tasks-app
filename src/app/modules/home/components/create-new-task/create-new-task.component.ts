@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
-import { TaskArrayService } from 'src/app/shared/services/task-array.service';
+import { TasksListService } from 'src/app/shared/services/tasksList.service';
 import { Categories } from 'src/app/types/task.type';
 
 @Component({
@@ -20,7 +20,7 @@ export class NewTaskViewComponent implements OnInit, OnDestroy {
   constructor(
     private taskSvc: TasksService,
     private _snackBar: MatSnackBar,
-    private taskArraySvc: TaskArrayService,
+    private taskArraySvc: TasksListService,
     private router: Router,
     private spinnerService: SpinnerService
   ) {}

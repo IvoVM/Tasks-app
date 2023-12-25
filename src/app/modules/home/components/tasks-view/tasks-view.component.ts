@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TaskResponse } from 'src/app/types/task.type';
 import { Subscription } from 'rxjs';
-import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
+import { TasksListService } from 'src/app/shared/services/tasksList.service';
 
 @Component({
   selector: 'app-tasks-view',
@@ -31,7 +31,7 @@ export class TasksViewComponent implements OnInit, OnDestroy {
   private tasksSubscription: Subscription = new Subscription();
 
   constructor(
-    private taskArraySvc: TaskArrayService,
+    private taskArraySvc: TasksListService,
     private taskSvc: TasksService,
     private spinnerService: SpinnerService
   ) {}

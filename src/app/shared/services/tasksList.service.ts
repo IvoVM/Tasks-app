@@ -6,7 +6,7 @@ import { TaskResponse } from '../../types/task.type';
 @Injectable({
   providedIn: 'root',
 })
-export class TaskArrayService {
+export class TasksListService {
   //Tasks views
   private tasksSubject = new BehaviorSubject<TaskResponse[]>([]);
   tasks$ = this.tasksSubject.asObservable();

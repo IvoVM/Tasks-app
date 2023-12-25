@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TasksService } from 'src/app/modules/home/services/tasks.service';
-import { TaskArrayService } from 'src/app/shared/services/task-array.service';
+import { TasksListService } from 'src/app/shared/services/tasksList.service';
 import { TaskResponse } from 'src/app/types/task.type';
 
 @Component({
@@ -16,7 +16,7 @@ export class DeleteTaskModalComponent {
     private dialogRef: MatDialogRef<DeleteTaskModalComponent>,
     private taskSvc: TasksService,
     private _snackBar: MatSnackBar,
-    private taskArraySvc: TaskArrayService,
+    private taskArraySvc: TasksListService,
     private router: Router
   ) {}
 
