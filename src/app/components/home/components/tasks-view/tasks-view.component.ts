@@ -17,6 +17,7 @@ import { SpinnerService } from 'src/app/shared/services/spinner.service';
     `,
   ],
 })
+
 export class TasksViewComponent implements OnInit, OnDestroy {
   tasks: TaskResponse[] = [];
   incompletedBtnSelected = true;
