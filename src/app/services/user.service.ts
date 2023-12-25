@@ -17,8 +17,6 @@ export class UserService {
   }
 
   clearUser() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token_expires');
     localStorage.removeItem('token');
     this.userSubject.next(null);
   }
