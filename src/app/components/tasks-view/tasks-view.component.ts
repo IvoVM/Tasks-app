@@ -44,6 +44,7 @@ export class TasksViewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.tasksSubscription.unsubscribe();
+    this.spinnerSubscription.unsubscribe();
   }
 
   //subscriptions
