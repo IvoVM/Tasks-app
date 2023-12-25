@@ -11,27 +11,19 @@
       [color]="'blue'"
       [disabled]="incompletedBtnSelected"
       [color]="incompletedBtnSelected ? 'blue' : 'grey'"
-      (click)="
-        this.incompletedBtnSelected = true;
-        this.current_page = 1;
-        this.getTasks()
-      "
+      (click)="getIncompletedTasks()"
     ></app-workspace-btn>
     <app-workspace-btn
       [text]="'Completas'"
       [color]="incompletedBtnSelected ? 'grey' : 'blue'"
       [disabled]="!incompletedBtnSelected"
       class="mx-4"
-      (click)="
-        this.incompletedBtnSelected = false;
-        this.current_page = 1;
-        this.getTasks()
-      "
+      (click)="getCompletedTasks()"
     ></app-workspace-btn>
   </div>
 </div>
 
-<ng-container *ngIf="!error; else elseBlock">
+<ng-container *ngIf="!error && !showSpinner">
   <div class="row">
     <div class="col-lg-4 col-md-6 col-xs-12 mt-4" *ngFor="let task of tasks">
       <app-task [data]="task"></app-task>
@@ -39,12 +31,16 @@
   </div>
 </ng-container>
 
+<div *ngIf="!error && showSpinner">
+  <mat-spinner class="my-5"></mat-spinner>
+</div>
+
 <app-workspace-btn
   [text]="'Más tareas'"
   class="mt-4 m-w-300"
   (click)="loadNextPage()"
 ></app-workspace-btn>
 
-<ng-template #elseBlock>
+<ng-template *ngIf="error && !showSpinner">
   <p class="text-danger">{{ error }}</p>
 </ng-template>

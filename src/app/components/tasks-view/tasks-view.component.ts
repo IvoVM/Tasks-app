@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 import { TasksService } from 'src/app/services/tasks.service';
 import { SearchService } from 'src/app/services/search.service';
+import { SpinnerService } from 'src/app/shared/services/spinner.service';
 
 @Component({
   selector: 'app-tasks-view',
@@ -19,19 +20,25 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class TasksViewComponent implements OnInit, OnDestroy {
   tasks: TaskResponse[] = [];
-  error = '';
   incompletedBtnSelected = true;
   current_page = 1;
+
+  showSpinner = false;
+  spinnerSubscription: Subscription = new Subscription();
+
+  error = '';
 
   private tasksSubscription: Subscription = new Subscription();
 
   constructor(
     private taskArraySvc: TaskArrayService,
-    private taskSvc: TasksService
+    private taskSvc: TasksService,
+    private spinnerService: SpinnerService
   ) {}
 
   ngOnInit(): void {
     this.subscribeToTasks();
+    this.subscribeSpinnerService();
     this.getTasks();
   }
 
@@ -48,6 +55,14 @@ export class TasksViewComponent implements OnInit, OnDestroy {
         this.tasks = tasks.filter((task) => task.is_completed);
       }
     });
+  }
+
+  subscribeSpinnerService() {
+    this.spinnerSubscription = this.spinnerService
+      .getSpinnerState()
+      .subscribe((isVisible) => {
+        this.showSpinner = isVisible;
+      });
   }
 
   // HTTP request
@@ -73,6 +88,9 @@ export class TasksViewComponent implements OnInit, OnDestroy {
         this.error =
           'Hubo un error cargando la data, por favor inténtelo de nuevo más tarde';
       },
+      complete: () => {
+        this.spinnerService.hideSpinner();
+      },
     });
   }
 
@@ -86,5 +104,17 @@ export class TasksViewComponent implements OnInit, OnDestroy {
   loadNextPage() {
     this.current_page++;
     this.getTasks(true);
+  }
+  getIncompletedTasks() {
+    this.spinnerService.showSpinner();
+    this.incompletedBtnSelected = true;
+    this.current_page = 1;
+    this.getTasks();
+  }
+  getCompletedTasks() {
+    this.spinnerService.showSpinner();
+    this.incompletedBtnSelected = false;
+    this.current_page = 1;
+    this.getTasks();
   }
 }
