@@ -36,10 +36,12 @@ export class TasksViewComponent implements OnInit, OnDestroy {
     private spinnerService: SpinnerService
   ) {}
 
+  //Lifecycles
+
   ngOnInit(): void {
     this.subscribeToTasks();
     this.subscribeSpinnerService();
-    this.getTasks();
+    this.HttpRequestGetTasks();
   }
 
   ngOnDestroy(): void {
@@ -47,7 +49,7 @@ export class TasksViewComponent implements OnInit, OnDestroy {
     this.spinnerSubscription.unsubscribe();
   }
 
-  //subscriptions
+  //Subscriptions
   subscribeToTasks() {
     this.tasksSubscription = this.taskArraySvc.tasks$.subscribe((tasks) => {
       if (this.incompletedBtnSelected) {
@@ -66,9 +68,23 @@ export class TasksViewComponent implements OnInit, OnDestroy {
       });
   }
 
+  //Buttons filter management
+  getIncompletedTasks() {
+    this.spinnerService.showSpinner();
+    this.incompletedBtnSelected = true;
+    this.current_page = 1;
+    this.HttpRequestGetTasks();
+  }
+  getCompletedTasks() {
+    this.spinnerService.showSpinner();
+    this.incompletedBtnSelected = false;
+    this.current_page = 1;
+    this.HttpRequestGetTasks();
+  }
+
   // HTTP request
 
-  getTasks(push: boolean = false) {
+  HttpRequestGetTasks(push: boolean = false) {
     const taskObservable = this.incompletedBtnSelected
       ? this.taskSvc.getTasks(3, this.current_page, false)
       : this.taskSvc.getTasks(3, this.current_page, true);
@@ -95,6 +111,7 @@ export class TasksViewComponent implements OnInit, OnDestroy {
     });
   }
 
+  //Tasks array management, push or create new one
   updateTasksList(tasksArray: TaskResponse[]) {
     this.taskArraySvc.updateTasks(tasksArray);
   }
@@ -102,20 +119,9 @@ export class TasksViewComponent implements OnInit, OnDestroy {
     this.taskArraySvc.pushTasks(tasksArray);
   }
 
+  //load next page
   loadNextPage() {
     this.current_page++;
-    this.getTasks(true);
-  }
-  getIncompletedTasks() {
-    this.spinnerService.showSpinner();
-    this.incompletedBtnSelected = true;
-    this.current_page = 1;
-    this.getTasks();
-  }
-  getCompletedTasks() {
-    this.spinnerService.showSpinner();
-    this.incompletedBtnSelected = false;
-    this.current_page = 1;
-    this.getTasks();
+    this.HttpRequestGetTasks(true);
   }
 }
