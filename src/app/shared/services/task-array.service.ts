@@ -40,6 +40,12 @@ export class TaskArrayService {
     this.tasksSubject.next(tasks);
   }
 
+  pushTasks(newTasks: TaskResponse[]): void {
+    const currentTasks = this.tasksSubject.value;
+    const updatedTasks = [...currentTasks, ...newTasks];
+    this.updateTasks(updatedTasks);
+  }
+
   deleteTaskById(taskId: number) {
     const currentTasks = this.tasksSubject.value;
     const updatedTasks = currentTasks.filter((task) => task.id !== taskId);
