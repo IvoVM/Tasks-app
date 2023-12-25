@@ -46,13 +46,13 @@ export class TaskArrayService {
     this.updateTasks(updatedTasks);
   }
 
-  deleteTaskById(taskId: number) {
+  deleteTaskById(taskId: string) {
     const currentTasks = this.tasksSubject.value;
     const updatedTasks = currentTasks.filter((task) => task.id !== taskId);
     this.updateTasks(updatedTasks);
   }
 
-  toggleTaskCompletion(taskId: number) {
+  toggleTaskCompletion(taskId: string) {
     const currentTasks = this.tasksSubject.value;
     const updatedTasks = currentTasks.map((task) => {
       if (task.id === taskId) {

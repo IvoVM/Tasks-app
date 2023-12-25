@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   {
     path: 'home',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     component: HomeComponent,
   },
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'task/:id',
     component: TaskDetailComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'createTask',

@@ -21,23 +21,27 @@ export class TaskComponent {
 
   onCheckboxChange($event: any) {
     const is_completed = $event.target.checked;
-    let body = {
-      is_completed,
-      id: this.data.id,
-    };
-
-    this.taskService.updateTaskStatus(body).subscribe({
-      next: () => {
-        is_completed
-          ? this.taskArraySvc.decreaseIncompleteTaskCount()
-          : this.taskArraySvc.increaseIncompleteTaskCount();
-        this.taskArraySvc.toggleTaskCompletion(this.data.id);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    
+    if (this.data && this.data.id) {
+      let body = {
+        is_completed,
+        id: this.data.id,
+      };
+  
+      this.taskService.updateTaskStatus(body).subscribe({
+        next: () => {
+          is_completed
+            ? this.taskArraySvc.decreaseIncompleteTaskCount()
+            : this.taskArraySvc.increaseIncompleteTaskCount();
+          this.taskArraySvc.toggleTaskCompletion(this.data.id);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
   }
+  
 
   openDeleteModal() {
     this.dialog.open(DeleteTaskModalComponent, {

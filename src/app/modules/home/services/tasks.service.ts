@@ -60,13 +60,13 @@ export class TasksService {
   }
 
   updateTaskStatus(body: {
-    id: number;
+    id: string;
     is_completed: boolean;
   }): Observable<Task> {
     return this.http.put<Task>(`${this.apiUrl}` + '/status', body);
   }
 
-  deleteTask(id: number): Observable<any> {
+  deleteTask(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 

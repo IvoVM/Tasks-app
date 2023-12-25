@@ -21,6 +21,7 @@ import { RouterModule } from '@angular/router';
     AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     TaskFormComponent,
