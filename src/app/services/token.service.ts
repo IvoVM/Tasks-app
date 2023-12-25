@@ -13,7 +13,6 @@ export class TokenService {
   setTokenExpiration(expiration: string): void {
     this.tokenExpiration = new Date(expiration);
     this.scheduleExpirationCheck();
-    console.log('comenso el conteo de exp token')
   }
 
   private scheduleExpirationCheck(): void {
@@ -37,7 +36,6 @@ export class TokenService {
       this.userSvc.clearUser();
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
-      console.log('el token expiro enviando al login');
     } else {
       this.scheduleExpirationCheck();
     }

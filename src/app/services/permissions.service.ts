@@ -24,9 +24,9 @@ export class PermissionsService {
     });
 
     if (user) {
-      console.log(user)
       return true;
     }
+    
     this.router.navigate(['/login']);
     return false;
   }

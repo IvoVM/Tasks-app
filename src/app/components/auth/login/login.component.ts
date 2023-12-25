@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   login() {
     if (this.form.valid) {
       this.spinnerService.showSpinner();
-      // console.log(this.isSpinnerVisible);
       const body = {
         email: this.form.value.email,
         password: this.form.value.password,
