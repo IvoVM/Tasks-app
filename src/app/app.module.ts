@@ -13,9 +13,7 @@ import { SpinnerInterceptorService } from './shared/interceptors/spinner-interce
 //Modules
 
 import { AuthModule } from './components/auth/auth.module';
-import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './components/home/home.module';
-import { AngularMaterialModule } from './shared/material/material.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,9 +23,7 @@ import { AngularMaterialModule } from './shared/material/material.module';
     BrowserAnimationsModule,
     HttpClientModule,
     AuthModule,
-    SharedModule,
     HomeModule,
-    AngularMaterialModule
   ],
   providers: [
     {
