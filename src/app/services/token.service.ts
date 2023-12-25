@@ -1,40 +1,45 @@
 import { Injectable } from '@angular/core';
-import { UserResponse } from '../types/user.type';
-
-const TOKEN_KEY = 'token';
-const EXPIRATION_DATE_KEY = 'expirationDate';
+import { Router } from '@angular/router';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenService {
-  constructor() {}
+  private tokenExpiration: Date | null = null;
 
-  saveToken(user: UserResponse) {
-    if (user) {
-      const { access_token_expiration } = user;
-      this.saveTokenExpirationDate(new Date(access_token_expiration).getTime());
+  constructor(private router: Router, private userSvc: UserService) {}
+
+  setTokenExpiration(expiration: string): void {
+    this.tokenExpiration = new Date(expiration);
+    this.scheduleExpirationCheck();
+    console.log('comenso el conteo de exp token')
+  }
+
+  private scheduleExpirationCheck(): void {
+    if (this.tokenExpiration) {
+      const now = new Date();
+      const timeUntilExpiration =
+        this.tokenExpiration.getTime() - now.getTime();
+
+      if (timeUntilExpiration > 0) {
+        setTimeout(() => this.checkTokenExpiration(), timeUntilExpiration);
+      } else {
+        this.checkTokenExpiration();
+      }
     }
   }
 
-  saveTokenExpirationDate(expirationTime: number) {
-    const expireDate = new Date(expirationTime);
-    const saveExpireDate = JSON.stringify(expireDate);
-    localStorage.setItem(EXPIRATION_DATE_KEY, saveExpireDate);
-  }
+  private checkTokenExpiration(): void {
+    const now = new Date();
 
-  tokenIsExpired(): boolean {
-    const expireDateSaved = localStorage.getItem(EXPIRATION_DATE_KEY);
-
-    if (expireDateSaved) {
-      const expireDate = new Date(JSON.parse(expireDateSaved));
-      const currentDate = new Date();
-      console.log(currentDate, expireDate);
-
-      return currentDate >= expireDate;
+    if (this.tokenExpiration && now >= this.tokenExpiration) {
+      this.userSvc.clearUser();
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+      console.log('el token expiro enviando al login');
+    } else {
+      this.scheduleExpirationCheck();
     }
-
-    console.log('There is no expiration date available');
-    return true;
   }
 }

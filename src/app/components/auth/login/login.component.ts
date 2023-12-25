@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
 
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private tokenSvc: TokenService
   ) {}
 
   ngOnInit(): void {
@@ -54,8 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         next: (res) => {
           this.userService.setUser(res);
           localStorage.setItem('token', res.access_token);
-          localStorage.setItem('token_expires', res.access_token_expiration);
-          localStorage.setItem('user', JSON.stringify(res));
+          this.tokenSvc.setTokenExpiration(res.access_token_expiration);
           this.router.navigateByUrl('home');
         },
         error: (err) => {
