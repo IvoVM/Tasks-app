@@ -8,87 +8,65 @@ import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-tasks-view',
   templateUrl: './tasks-view.component.html',
+  styles: [
+    `
+      .m-w-300 {
+        max-width: 417px;
+        display: block;
+      }
+    `,
+  ],
 })
 export class TasksViewComponent implements OnInit, OnDestroy {
   tasks: TaskResponse[] = [];
   error = '';
   incompletedBtnSelected = true;
+  current_page = 1;
 
   private tasksSubscription: Subscription = new Subscription();
-  private searchTermSubscription: Subscription = new Subscription();
 
   constructor(
     private taskArraySvc: TaskArrayService,
-    private taskSvc: TasksService,
-    private searcherSvc: SearchService
+    private taskSvc: TasksService
   ) {}
 
   ngOnInit(): void {
     this.subscribeToTasks();
-    this.subscribeToSearchTerm();
-    this.getIncompleteTasks();
+    this.getTasks(true);
   }
 
   ngOnDestroy(): void {
     this.tasksSubscription.unsubscribe();
-    this.searchTermSubscription.unsubscribe();
   }
 
   //subscriptions
-  subscribeToTasks(): void {
+  subscribeToTasks() {
     this.tasksSubscription = this.taskArraySvc.tasks$.subscribe((tasks) => {
-      this.filterTasks(tasks);
-    });
-  }
-
-  subscribeToSearchTerm(): void {
-    this.searchTermSubscription = this.searcherSvc.searchTerm$.subscribe(
-      (searchTerm) => {
-        this.taskArraySvc.updateTasks(this.tasks);
-        if (searchTerm === '') {
-          // If searchTerm is empty, fetch all tasks based on the selected button
-          if (this.incompletedBtnSelected) {
-            this.getIncompleteTasks();
-          } else {
-            this.getCompleteTasks();
-          }
-        } else {
-          this.filterTasks(this.tasks, searchTerm);
-        }
+      if (this.incompletedBtnSelected) {
+        this.tasks = tasks.filter((task) => !task.is_completed);
+      } else {
+        this.tasks = tasks.filter((task) => task.is_completed);
       }
-    );
-  }
-
-  //filter
-  filterTasks(tasks: TaskResponse[], searchTerm: string = ''): void {
-    if (this.incompletedBtnSelected) {
-      this.tasks = tasks.filter(
-        (task) => !task.is_completed && this.matchesSearchTerm(task, searchTerm)
-      );
-    } else {
-      this.tasks = tasks.filter(
-        (task) => task.is_completed && this.matchesSearchTerm(task, searchTerm)
-      );
-    }
-  }
-
-  matchesSearchTerm(task: TaskResponse, searchTerm: string): boolean {
-    return (
-      task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      task.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      task.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    });
   }
 
   // HTTP request
 
-  getIncompleteTasks() {
-    this.incompletedBtnSelected = true;
-    this.taskSvc.getTasks(10, 1).subscribe({
+  getTasks(searchIncompletedTasks: boolean) {
+    this.incompletedBtnSelected = searchIncompletedTasks;
+
+    const taskObservable = this.incompletedBtnSelected
+      ? this.taskSvc.getTasks(3, this.current_page, false)
+      : this.taskSvc.getTasks(3, this.current_page, true);
+
+    taskObservable.subscribe({
       next: (res) => {
+        console.log('vio');
         this.taskArraySvc.updateTasks(res.items);
         if (!this.tasks.length) {
-          this.error = 'No hay tareas incompletas';
+          this.error = this.incompletedBtnSelected
+            ? 'No hay tareas incompletas'
+            : 'No hay tareas completas';
         } else {
           this.error = '';
         }
@@ -100,21 +78,5 @@ export class TasksViewComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCompleteTasks() {
-    this.incompletedBtnSelected = false;
-    this.taskSvc.getTasks(10, 1, true).subscribe({
-      next: (res) => {
-        this.taskArraySvc.updateTasks(res.items);
-        if (!this.tasks.length) {
-          this.error = 'No hay tareas completas';
-        } else {
-          this.error = '';
-        }
-      },
-      error: () => {
-        this.error =
-          'Hubo un error cargando la data, por favor inténtelo de nuevo más tarde';
-      },
-    });
-  }
+  loadNextPage() {}
 }

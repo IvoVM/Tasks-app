@@ -11,14 +11,14 @@
       [color]="'blue'"
       [disabled]="incompletedBtnSelected"
       [color]="incompletedBtnSelected ? 'blue' : 'grey'"
-      (click)="this.getIncompleteTasks()"
+      (click)="this.getTasks(true)"
     ></app-workspace-btn>
     <app-workspace-btn
       [text]="'Completas'"
       [color]="incompletedBtnSelected ? 'grey' : 'blue'"
       [disabled]="!incompletedBtnSelected"
       class="mx-4"
-      (click)="this.getCompleteTasks()"
+      (click)="this.getTasks(false)"
     ></app-workspace-btn>
   </div>
 </div>
@@ -30,6 +30,13 @@
     </div>
   </div>
 </ng-container>
+
+<app-workspace-btn
+  [text]="'Más tareas'"
+  class="mt-4 m-w-300"
+  (click)="loadNextPage()"
+></app-workspace-btn>
+
 <ng-template #elseBlock>
   <p class="text-danger">{{ error }}</p>
 </ng-template>
