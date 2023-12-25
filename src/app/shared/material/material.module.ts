@@ -11,6 +11,18 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
+  imports: [
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+  ],
   exports: [
     MatIconModule,
     MatFormFieldModule,
