@@ -14,17 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from './components/task/task.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearcherComponent } from './components/searcher/searcher.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { LogoutComponent } from './components/logout/logout.component';
 import { TokenInterceptorService } from './shared/interceptors/token-interceptor.service';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TasksViewComponent } from './components/tasks-view/tasks-view.component';
 import { TimeFormatPipe } from './pipes/time-format.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
@@ -35,12 +29,10 @@ import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { WorkspaceBtnComponent } from './components/workspace-btn/workspace-btn.component';
 import { NewTaskViewComponent } from './components/new-task-view/new-task-view.component';
 import { SpinnerInterceptorService } from './shared/interceptors/spinner-interceptor.service';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PriorityInputComponent } from './shared/components/inputs/priority-input/priority-input.component';
 import { CategoryInputComponent } from './shared/components/inputs/category-input/category-input.component';
 import { TaskFormComponent } from './shared/components/task-form/task-form.component';
-import { InputTextComponent } from './shared/components/inputs/input-text/input-text.component';
-import { InputPasswordComponent } from './shared/components/inputs/input-password/input-password.component';
+import { AngularMaterialModule } from './shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -65,26 +57,15 @@ import { InputPasswordComponent } from './shared/components/inputs/input-passwor
     EditFormComponent,
     WorkspaceBtnComponent,
     NewTaskViewComponent,
-    InputTextComponent,
-    InputPasswordComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatFormFieldModule,
     FormsModule,
-    MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatProgressSpinnerModule,
+    AngularMaterialModule,
   ],
   providers: [
     {
