@@ -2,7 +2,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TasksService } from 'src/app/services/tasks.service';
+import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { Categories } from 'src/app/types/task.type';
 
 @Component({

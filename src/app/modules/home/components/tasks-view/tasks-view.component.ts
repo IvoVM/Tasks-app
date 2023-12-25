@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TaskResponse } from 'src/app/types/task.type';
 import { Subscription } from 'rxjs';
 import { TaskArrayService } from 'src/app/shared/services/task-array.service';
-import { TasksService } from 'src/app/services/tasks.service';
+import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
 
 @Component({

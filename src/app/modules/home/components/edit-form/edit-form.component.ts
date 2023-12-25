@@ -2,9 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { TasksService } from 'src/app/services/tasks.service';
+import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
-import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 import { Categories, Task } from 'src/app/types/task.type';
 
 @Component({

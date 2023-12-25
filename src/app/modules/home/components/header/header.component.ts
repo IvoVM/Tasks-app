@@ -3,7 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { UserResponse } from 'src/app/types/user.type';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutComponent } from '../logout/logout.component';
-import { TasksService } from 'src/app/services/tasks.service';
+import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { Subscription } from 'rxjs';
 import { TaskArrayService } from 'src/app/shared/services/task-array.service';
 

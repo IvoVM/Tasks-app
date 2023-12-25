@@ -1,9 +1,4 @@
-// home.module.ts
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { AngularMaterialModule } from 'src/app/shared/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
 import { DateFormatPipe } from 'src/app/pipes/date-format.pipe';

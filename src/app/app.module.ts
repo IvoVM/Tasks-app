@@ -12,8 +12,8 @@ import { TokenInterceptorService } from './shared/interceptors/token-interceptor
 import { SpinnerInterceptorService } from './shared/interceptors/spinner-interceptor.service';
 //Modules
 
-import { AuthModule } from './components/auth/auth.module';
-import { HomeModule } from './components/home/home.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
   declarations: [AppComponent],

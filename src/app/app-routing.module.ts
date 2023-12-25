@@ -1,12 +1,12 @@
-import { NewTaskViewComponent } from './components/home/components/new-task-view/new-task-view.component';
+import { NewTaskViewComponent } from './modules/home/components/new-task-view/new-task-view.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './modules/auth/register/register.component';
+import { LoginComponent } from './modules/auth/login/login.component';
+import { HomeComponent } from './modules/home/home.component';
 import { AuthGuard } from './Guards/auth.guard';
-import { TaskDetailComponent } from './components/home/components/task-detail/task-detail.component';
-import { EditFormComponent } from './components/home/components/edit-form/edit-form.component';
+import { TaskDetailComponent } from './modules/home/components/task-detail/task-detail.component';
+import { EditFormComponent } from './modules/home/components/edit-form/edit-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },

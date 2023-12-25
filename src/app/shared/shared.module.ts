@@ -25,11 +25,11 @@ import { RouterModule } from '@angular/router';
   exports: [
     TaskFormComponent,
     WorkspaceBtnComponent,
+    AngularMaterialModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    AngularMaterialModule,
-    CommonModule
   ],
 })
 export class SharedModule {}

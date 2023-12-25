@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
-import { TokenService } from 'src/app/services/token.service';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-login',

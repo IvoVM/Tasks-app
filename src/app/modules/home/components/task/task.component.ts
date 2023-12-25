@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TasksService } from 'src/app/services/tasks.service';
+import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { TaskResponse } from 'src/app/types/task.type';
 import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
