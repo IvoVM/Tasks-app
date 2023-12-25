@@ -32,7 +32,7 @@ export class TasksViewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeToTasks();
-    this.getTasks(true);
+    this.getTasks();
   }
 
   ngOnDestroy(): void {
@@ -52,17 +52,15 @@ export class TasksViewComponent implements OnInit, OnDestroy {
 
   // HTTP request
 
-  getTasks(searchIncompletedTasks: boolean) {
-    this.incompletedBtnSelected = searchIncompletedTasks;
-
+  getTasks(push: boolean = false) {
     const taskObservable = this.incompletedBtnSelected
       ? this.taskSvc.getTasks(3, this.current_page, false)
       : this.taskSvc.getTasks(3, this.current_page, true);
 
     taskObservable.subscribe({
       next: (res) => {
-        console.log('vio');
-        this.taskArraySvc.updateTasks(res.items);
+        push ? this.pushTasksList(res.items) : this.updateTasksList(res.items);
+
         if (!this.tasks.length) {
           this.error = this.incompletedBtnSelected
             ? 'No hay tareas incompletas'
@@ -78,5 +76,15 @@ export class TasksViewComponent implements OnInit, OnDestroy {
     });
   }
 
-  loadNextPage() {}
+  updateTasksList(tasksArray: TaskResponse[]) {
+    this.taskArraySvc.updateTasks(tasksArray);
+  }
+  pushTasksList(tasksArray: TaskResponse[]) {
+    this.taskArraySvc.pushTasks(tasksArray);
+  }
+
+  loadNextPage() {
+    this.current_page++;
+    this.getTasks(true);
+  }
 }

@@ -11,14 +11,22 @@
       [color]="'blue'"
       [disabled]="incompletedBtnSelected"
       [color]="incompletedBtnSelected ? 'blue' : 'grey'"
-      (click)="this.getTasks(true)"
+      (click)="
+        this.incompletedBtnSelected = true;
+        this.current_page = 1;
+        this.getTasks()
+      "
     ></app-workspace-btn>
     <app-workspace-btn
       [text]="'Completas'"
       [color]="incompletedBtnSelected ? 'grey' : 'blue'"
       [disabled]="!incompletedBtnSelected"
       class="mx-4"
-      (click)="this.getTasks(false)"
+      (click)="
+        this.incompletedBtnSelected = false;
+        this.current_page = 1;
+        this.getTasks()
+      "
     ></app-workspace-btn>
   </div>
 </div>
