@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TasksService } from 'src/app/modules/home/services/tasks.service';
+import { HeaderIconService } from 'src/app/shared/services/header-icon.service';
 import { TasksListService } from 'src/app/shared/services/tasksList.service';
 import { TaskResponse } from 'src/app/types/task.type';
 
@@ -17,7 +18,8 @@ export class DeleteTaskModalComponent {
     private taskSvc: TasksService,
     private _snackBar: MatSnackBar,
     private taskArraySvc: TasksListService,
-    private router: Router
+    private router: Router,
+    private headerIconSvc :HeaderIconService
   ) {}
 
   closeDialog() {
@@ -37,7 +39,7 @@ export class DeleteTaskModalComponent {
         //Update View trough subjects
         this.taskArraySvc.deleteTaskById(id);
         if (!this.data.data.is_completed)
-          this.taskArraySvc.decreaseIncompleteTaskCount();
+          this.headerIconSvc.decreaseIncompleteTaskCount();
         this.closeDialog();
         this.router.navigateByUrl('home');
         this.openSnackBar(`La tarea de id:${id}, fué eliminada con éxito`);

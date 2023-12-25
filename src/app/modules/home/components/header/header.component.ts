@@ -6,6 +6,7 @@ import { LogoutComponent } from '../logout/logout.component';
 import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { Subscription } from 'rxjs';
 import { TasksListService } from 'src/app/shared/services/tasksList.service';
+import { HeaderIconService } from 'src/app/shared/services/header-icon.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit {
     private userSvc: UserService,
     private dialog: MatDialog,
     private taskSvc: TasksService,
-    private taskArraySvc: TasksListService
+    private taskArraySvc: TasksListService,
+    private headerIconSvc:HeaderIconService
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class HeaderComponent implements OnInit {
   getIncompleteTaskLength() {
     this.taskSvc.getIncompleteTasksLenght().subscribe({
       next: (res) => {
-        this.taskArraySvc.setFirstValue(res.incomplete_task_count);
+        this.headerIconSvc.setFirstValue(res.incomplete_task_count);
       },
       error: (err) => {
         console.log(err);
@@ -49,7 +51,7 @@ export class HeaderComponent implements OnInit {
 
   subscribeToTasks() {
     this.incompleteTasksSubscription =
-      this.taskArraySvc.incompletedTasksLenght$.subscribe((value) => {
+      this.headerIconSvc.incompletedTasksLenght$.subscribe((value) => {
         this.lengthNumber = value;
       });
   }

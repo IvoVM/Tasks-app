@@ -5,6 +5,7 @@ import { TaskResponse } from 'src/app/types/task.type';
 import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TasksListService } from 'src/app/shared/services/tasksList.service';
+import { HeaderIconService } from 'src/app/shared/services/header-icon.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -20,6 +21,7 @@ export class TaskDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private taskArraySvc:TasksListService,
     private dialog: MatDialog,
+    private headerIconSvc:HeaderIconService
 
   ) {}
   ngOnInit(): void {
@@ -53,8 +55,8 @@ export class TaskDetailComponent implements OnInit {
       this.tasksService.updateTaskStatus(body).subscribe({
         next: () => {
           is_completed
-            ? this.taskArraySvc.decreaseIncompleteTaskCount()
-            : this.taskArraySvc.increaseIncompleteTaskCount();
+            ? this.headerIconSvc.decreaseIncompleteTaskCount()
+            : this.headerIconSvc.increaseIncompleteTaskCount();
           this.taskArraySvc.toggleTaskCompletion(this.data.id);
         },
         error: (err) => {

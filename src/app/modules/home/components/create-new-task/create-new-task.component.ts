@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TasksService } from 'src/app/modules/home/services/tasks.service';
+import { HeaderIconService } from 'src/app/shared/services/header-icon.service';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
 import { TasksListService } from 'src/app/shared/services/tasksList.service';
 import { Categories } from 'src/app/types/task.type';
@@ -20,9 +21,9 @@ export class NewTaskViewComponent implements OnInit, OnDestroy {
   constructor(
     private taskSvc: TasksService,
     private _snackBar: MatSnackBar,
-    private taskArraySvc: TasksListService,
     private router: Router,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private headerIconSvc:HeaderIconService
   ) {}
   ngOnInit(): void {
     this.getFormCategories();
@@ -43,7 +44,7 @@ export class NewTaskViewComponent implements OnInit, OnDestroy {
     this.taskSvc.createTask(event).subscribe({
       next: () => {
         this.openSnackBar('Tarea subida con exito');
-        this.taskArraySvc.increaseIncompleteTaskCount();
+        this.headerIconSvc.increaseIncompleteTaskCount();
         this.router.navigateByUrl('/home');
       },
       error: () => {

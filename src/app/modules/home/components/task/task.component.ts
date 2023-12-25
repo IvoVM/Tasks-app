@@ -4,6 +4,7 @@ import { TaskResponse } from 'src/app/types/task.type';
 import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TasksListService } from 'src/app/shared/services/tasksList.service';
+import { HeaderIconService } from 'src/app/shared/services/header-icon.service';
 
 @Component({
   selector: 'app-task',
@@ -16,7 +17,8 @@ export class TaskComponent {
   constructor(
     private taskService: TasksService,
     private dialog: MatDialog,
-    private taskArraySvc: TasksListService
+    private taskArraySvc: TasksListService,
+    private headerIconSvc:HeaderIconService
   ) {}
 
   onCheckboxChange($event: any) {
@@ -31,8 +33,8 @@ export class TaskComponent {
       this.taskService.updateTaskStatus(body).subscribe({
         next: () => {
           is_completed
-            ? this.taskArraySvc.decreaseIncompleteTaskCount()
-            : this.taskArraySvc.increaseIncompleteTaskCount();
+            ? this.headerIconSvc.decreaseIncompleteTaskCount()
+            : this.headerIconSvc.increaseIncompleteTaskCount();
           this.taskArraySvc.toggleTaskCompletion(this.data.id);
         },
         error: (err) => {

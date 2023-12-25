@@ -7,34 +7,9 @@ import { TaskResponse } from '../../types/task.type';
   providedIn: 'root',
 })
 export class TasksListService {
-  //Tasks views
+
   private tasksSubject = new BehaviorSubject<TaskResponse[]>([]);
   tasks$ = this.tasksSubject.asObservable();
-
-  //Header icon
-  private incompletedTaskLengthSubject = new BehaviorSubject<number>(0);
-  incompletedTasksLenght$ = this.incompletedTaskLengthSubject.asObservable();
-
-  // header icon
-  setFirstValue(value: number) {
-    this.incompletedTaskLengthSubject.next(value);
-  }
-
-  increaseIncompleteTaskCount(): void {
-    this.incompletedTaskLengthSubject.next(
-      this.incompletedTaskLengthSubject.value + 1
-    );
-  }
-
-  decreaseIncompleteTaskCount(): void {
-    if (this.incompletedTaskLengthSubject.value > 0) {
-      this.incompletedTaskLengthSubject.next(
-        this.incompletedTaskLengthSubject.value - 1
-      );
-    }
-  }
-
-  // task-view Component
 
   updateTasks(tasks: TaskResponse[]) {
     this.tasksSubject.next(tasks);
