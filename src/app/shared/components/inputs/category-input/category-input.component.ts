@@ -9,7 +9,7 @@ import { Categories } from 'src/app/types/task.type';
 export class CategoryInputComponent {
   @Input() categories: Categories[] = [];
   @Output() categorySelected = new EventEmitter<number>();
-  selectedCategoryId: number | undefined;
+  @Input() selectedCategoryId = 1;
 
   onSelectChange() {
     if (this.selectedCategoryId !== undefined) {
