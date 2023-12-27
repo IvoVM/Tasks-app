@@ -1,10 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TasksService } from 'src/app/modules/home/services/tasks.service';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
-import { Categories, Task } from 'src/app/types/task.type';
+import {
+  Categories,
+  Task,
+  TaskEdit,
+} from 'src/app/types/task.type';
 
 @Component({
   selector: 'app-edit-form',
@@ -12,8 +16,8 @@ import { Categories, Task } from 'src/app/types/task.type';
 })
 export class EditFormComponent implements OnInit, OnDestroy {
   categories: Categories[] = [];
-  id = this.route.snapshot.paramMap.get('id');
-  taskTitle = this.route.snapshot.paramMap.get('title');
+  task!: TaskEdit;
+  id!: string;
 
   spinnerSubscription: Subscription = new Subscription();
   showSpinner = false;
@@ -27,6 +31,7 @@ export class EditFormComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit(): void {
     this.getFormCategories();
+    this.subscribeToRouteParams();
   }
   getFormCategories(): void {
     this.taskSvc.getCategories().subscribe({
@@ -41,6 +46,26 @@ export class EditFormComponent implements OnInit, OnDestroy {
         this.spinnerService.hideSpinner();
       },
     });
+  }
+
+  subscribeToRouteParams(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id') || '';
+      this.getTaskData();
+    });
+  }
+
+  getTaskData(): void {
+    if (this.id) {
+      this.taskSvc.getTaskById(this.id).subscribe({
+        next: (res) => {
+          this.task = res;
+        },
+        error: () => {
+          this.router.navigateByUrl('home');
+        },
+      });
+    }
   }
 
   editTask(event: Task) {

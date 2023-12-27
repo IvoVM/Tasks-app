@@ -1,13 +1,15 @@
 <div class="m-4">
   <app-header></app-header>
   <div class="mt-4">
-    <app-task-form
-      [categories]="this.categories"
-      (sendFormData)="editTask($event)"
-      [title]="'Editar'"
-      [subTitle]="taskTitle ? taskTitle : ''"
-      [btnText]="'Guardar'"
-      [showSpinner]="showSpinner"
-    ></app-task-form>
+    <ng-container *ngIf="task && !showSpinner; else spinner">
+      <app-form
+        [task]="task"
+        [categories]="this.categories"
+        (sendFormData)="editTask($event)"
+      ></app-form>
+    </ng-container>
+    <ng-template #spinner>
+      <mat-spinner strokeWidth="20"></mat-spinner>
+    </ng-template>
   </div>
 </div>
