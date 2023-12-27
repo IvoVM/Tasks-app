@@ -16,6 +16,9 @@ export interface TaskResponse {
   creation_date?: string;
 }
 
+export interface TaskEdit extends TaskResponse {
+  category_id: number;
+}
 export interface TaskPage {
   current_page: number;
   page_size: number;
