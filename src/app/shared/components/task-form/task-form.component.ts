@@ -16,7 +16,6 @@ export class TaskFormComponent {
   selectedCategoryId!: number;
   error!: string;
   @Input() title!: string;
-  @Input() subTitle!: string;
   @Input() btnText!: string;
   @Input() showSpinner: boolean = false;
 
