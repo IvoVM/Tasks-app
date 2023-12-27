@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.prod';
-import { Categories, Task, TaskPage, TaskResponse } from '../../../types/task.type';
+import { Categories, Task, TaskEdit, TaskPage, TaskResponse } from '../../../types/task.type';
 
 @Injectable({
   providedIn: 'root',
@@ -40,8 +40,8 @@ export class TasksService {
     return this.http.get<TaskPage>(this.apiUrl, { params });
   }
 
-  getTaskById(id: string): Observable<TaskResponse> {
-    return this.http.get<TaskResponse>(`${this.apiUrl}/${id}`);
+  getTaskById(id: string): Observable<TaskEdit> {
+    return this.http.get<TaskEdit>(`${this.apiUrl}/${id}`);
   }
 
   createTask(task: Task): Observable<TaskResponse> {
