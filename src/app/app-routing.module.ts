@@ -34,7 +34,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'editTask/:title/:id',
+    path: 'editTask/:id',
     component: EditFormComponent,
     canActivate: [AuthGuard],
   },
