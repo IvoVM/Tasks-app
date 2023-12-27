@@ -1,0 +1,75 @@
+<div>
+  <div class="d-flex">
+    <mat-icon routerLink="/home" class="pointer text-purple"
+      >arrow_back</mat-icon
+    >
+    <p class="mx-2 mb-0 h4 text-black">{{ task.title }}</p>
+  </div>
+
+  <div>
+    <div>
+      <p class="mx-1 my-3 text-black">{{ task.title }}</p>
+    </div>
+    <form
+      [formGroup]="form"
+      class="d-flex justify-content-center flex-column form"
+    >
+      <mat-form-field appearance="fill">
+        <mat-label>{{ task.title }}</mat-label>
+        <input
+          autocomplete="true"
+          matInput
+          class="form-input"
+          type="text"
+          formControlName="title"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          [value]="inputValue"
+          (input)="onInputChange($event)"
+          disabled="true"
+        />
+        <app-priority-input
+          [counterValue]="inputValue"
+          (counterChange)="onCounterChange($event)"
+          matSuffix
+        ></app-priority-input>
+      </mat-form-field>
+
+      <app-category-input
+        [categories]="categories"
+        [selectedCategoryId]="this.task.category_id"
+        (categorySelected)="onCategorySelected($event)"
+      ></app-category-input>
+
+      <mat-form-field appearance="fill" class="textarea">
+        <mat-label>Descripción</mat-label>
+        <textarea
+          autocomplete="true"
+          matInput
+          rows="4"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+
+      <div *ngIf="error">
+        <p class="text-danger font-700 text-center">
+          {{ this.error }}
+        </p>
+      </div>
+
+      <ng-container *ngIf="!showSpinner; else spinner">
+        <app-workspace-btn
+          [text]="'Guardar'"
+          (click)="manageFormData()"
+        ></app-workspace-btn>
+      </ng-container>
+      <ng-template #spinner>
+        <mat-spinner strokeWidth="20"></mat-spinner>
+      </ng-template>
+    </form>
+  </div>
+</div>
