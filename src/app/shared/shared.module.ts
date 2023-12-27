@@ -31,6 +31,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    PriorityInputComponent,
+    CategoryInputComponent
   ],
 })
 export class SharedModule {}
